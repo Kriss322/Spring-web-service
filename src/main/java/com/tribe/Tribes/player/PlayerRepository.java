@@ -1,4 +1,6 @@
-package com.tribe.Tribes.Player;
+package com.tribe.Tribes.player;
 
-public class PlayerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PlayerRepository extends JpaRepository<Player, Integer> {
 }

@@ -1,4 +1,4 @@
-package com.tribe.Tribes.Player;
+package com.tribe.Tribes.player;
 
 public class PlayerService {
 }
