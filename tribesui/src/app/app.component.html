@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item>
+          <mat-icon>list</mat-icon>
+          <span>Áttekintés</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>public</mat-icon>
+          <span routerLink="/">Térkép</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Falu</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>group</mat-icon>
+          <span>Klán</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Profil</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>sms</mat-icon>
+          <span>Üzenetek</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>stars</mat-icon>
+          <span>Ranglista</span>
+        </button>
+      </mat-menu>
+    </span>
+    <span class="fill-remaining-space">Tribes</span>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
