@@ -1,45 +1,45 @@
 package com.tribe.Tribes.village;
 
+import com.tribe.Tribes.player.Player;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
-public class Village {
+@Data
+@NoArgsConstructor
+public class Village implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NonNull
     private String name;
-
-    private int points;
-
-    public Village() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
+    
+    @NonNull
+    private Integer villagePoints;
+    
+    @NonNull
+    @ManyToOne
+    private Player ownerPlayer;
+    
+    @NonNull
+    private Position position;
+    
+    private Integer wood;
+    private Integer clay;
+    private Integer metal;
+    private Integer food;
+    
+    private Integer woodPerMinutes;
+    private Integer clayPerMinutes;
+    private Integer metalPerMinutes;
+    private Integer foodPerMinutes;
 }

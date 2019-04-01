@@ -14,12 +14,12 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
     
-    
-    List<Player> getAllPlayers() {
+    public List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
 
-    Player addNewPlayer(Player newPlayer) {
+    public Player addNewPlayer(Player newPlayer) {
+        //TODO set villages too
         return playerRepository.save(newPlayer);
     }
 }
