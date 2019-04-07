@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping({"/players"})
 public class PlayerController {
 
-        private PlayerService playerService;
+        private final PlayerService playerService;
 
         @Autowired
         public PlayerController(PlayerService playerService) {
