@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
-@RequestMapping({"/players"})
+@RequestMapping(path = "/players")
 public class PlayerController {
 
         private final PlayerService playerService;
@@ -21,7 +21,7 @@ public class PlayerController {
             return playerService.getAllPlayers();
         }
 
-        @PostMapping
+        @PostMapping(consumes = "application/json", produces = "application/json")
         public Player newPlayer(@RequestBody Player newPlayer){
         return playerService.addNewPlayer(newPlayer);
     }
