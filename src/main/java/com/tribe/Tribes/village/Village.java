@@ -6,12 +6,9 @@ import com.tribe.Tribes.village.buildings.Building;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import java.util.Map;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,24 +27,32 @@ public class Village implements Serializable{
     
     @NonNull
     private Integer villagePoints;
-    
-    @NonNull
+
     @ManyToOne
+    @JoinColumn(name="player_id")
     private Player ownerPlayer;
-    
+
     @NonNull
+    @Embedded
     private Position position;
 
     private int population;
     
-    @OneToOne
+    @Embedded
     private Resources resourcesInWarehouse;
-    
-    @OneToOne
-    private Resources resourceProducement;
-    
-    private HashMap<SoldierUnit, Integer> armyAtHome;
-    private HashMap<SoldierUnit, Integer> armyOutOfHome;
-    
+
+    @Embedded
+    private ResourceProduction resourceProducementPerHour;
+
+    @ElementCollection
+    @CollectionTable(name="VILLAGE_ARMY")
+    @MapKeyJoinColumn(name="SOLDIER_ID")
+    private Map<SoldierUnit, Integer> army;
+
+    @OneToMany(mappedBy="ownerVillage")
     private List<Building> buildings;
+
+    @ManyToOne
+    @JoinColumn(name="worldmap_id")
+    private WorldMap worldMap;
 }
