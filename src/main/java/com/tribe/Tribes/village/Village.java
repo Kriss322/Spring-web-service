@@ -46,7 +46,8 @@ public class Village implements Serializable{
     @OneToOne
     private Resources resourceProducement;
     
-    private HashMap<SoldierUnit, Integer> army;
+    private HashMap<SoldierUnit, Integer> armyAtHome;
+    private HashMap<SoldierUnit, Integer> armyOutOfHome;
     
     private List<Building> buildings;
 }
