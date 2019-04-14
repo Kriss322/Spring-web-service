@@ -25,8 +25,8 @@ public class TribesApplication implements CommandLineRunner {
 	@Autowired
 	PlayerRepository playerRepository;
         
-        @Autowired
-        VillageRepository villageRepository;
+    @Autowired
+    VillageRepository villageRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TribesApplication.class, args);
@@ -35,24 +35,6 @@ public class TribesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args){
 		System.out.println("Running");
-                
-                
-                WorldPosition p = new WorldPosition(1,2,3);
-                List<SoldierUnit> army = new ArrayList();
-                army.add(new Archer());
-                Village v1 = new Village(1, "London", 125, null, p, 34, new Resources(3,3,3), new ResourceProduction(1,1,1), army, null, null);
-                villageRepository.save(v1);
-                List<Village> v = new ArrayList();
-                v.add(v1);
-                Player p1 = new Player(1,"Player1",23, null, "Leader", v, null);
-                               
-                
-		playerRepository.save(p1);
-                System.out.println(p1.getId());
-                v1.setOwnerPlayer(p1);
-                villageRepository.merge or persist here
- 
-                
 	}
 
 }

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/villages")
 public class VillageController {
@@ -18,6 +21,14 @@ public class VillageController {
     @Autowired
     public VillageController(VillageService villageService) {
         this.villageService = villageService;
+    }
+
+    @GetMapping
+    public List<VillageDTO> getAllVillages(){
+        List<Village> villages = villageService.getAllVillages();
+        return villages.stream()
+                .map(village -> convertToDto(village))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

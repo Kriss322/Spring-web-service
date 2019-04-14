@@ -15,16 +15,21 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class SoldierUnit implements Serializable {
 
-    // private String name;
     private Resources resourceTrainingCost;
 
     private Village ownerVillage;
 
     private int numberOfSoldiers;
+
     private int population;
+
     private int archerDefenseStrength;
-    private int generalDefeneseStrength;
+
+    private int generalDefenseStrength;
+
     private int offensiveStrength;
+
     private int speed;
+
     private int haulCapacity;
 }

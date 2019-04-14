@@ -1,6 +1,10 @@
 package com.tribe.Tribes.player;
 
 import java.util.List;
+
+import com.tribe.Tribes.village.Village;
+import com.tribe.Tribes.village.VillageRepository;
+import com.tribe.Tribes.village.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +12,12 @@ import org.springframework.stereotype.Service;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
+    private final VillageService villageService;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository) {
+    public PlayerService(PlayerRepository playerRepository, VillageService villageService) {
         this.playerRepository = playerRepository;
+        this.villageService =  villageService;
     }
     
     public List<Player> getAllPlayers() {
@@ -19,7 +25,7 @@ public class PlayerService {
     }
 
     public Player addNewPlayer(Player newPlayer) {
-        //TODO set villages too
+        Village villageCreated = villageService.createVillage(newPlayer);
         return playerRepository.save(newPlayer);
     }
 

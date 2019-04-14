@@ -51,6 +51,9 @@ public class Village implements Serializable{
     )
     private List<SoldierUnit> army;
 
+    //TODO implement unit trainings
+    private List<SoldierUnit> unitsUnderRecruitment;
+
     @OneToMany(mappedBy="ownerVillage")
     private List<Building> buildings;
 

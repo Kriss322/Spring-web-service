@@ -3,7 +3,7 @@ package com.tribe.Tribes.village.buildings;
 import com.tribe.Tribes.village.Resources;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
 import com.tribe.Tribes.village.Village;
 import lombok.Data;
@@ -11,34 +11,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Building_Type")
+@Embeddable
+@MappedSuperclass
 @Data
 @NoArgsConstructor
 public abstract class Building implements Serializable {
-   
-    //private static String NAME;
-    @Id
-    @GeneratedValue
-    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="village_id")
-    private Village ownerVillage;
-    private int level;
-    private long timeFactor;
-    
-    private int populationNeededForUpgrade;
-    private int totalOfPopulation;
-    
-    private Resources resourceRequirementsForUpgrade;
+    protected int level;
 
-    @OneToMany(mappedBy = "requiredFor")
-    private List<Building> requirements;
+    protected int maxLevel;
 
-    @ManyToOne
-    @JoinColumn(name = "requirement_id")
-    private Building requiredFor;
-    
+    protected Map<Integer, Integer> populationNeededForUpgrade;
+
+    protected Map<Integer, Integer> totalOfPopulation;
+
+    protected Map<Integer, Resources> resourceRequirementsForUpgrade;
+
+    protected Map<String, Integer> requirements;
+
+    // private Building requiredFor;
+
+    public abstract void setStarterSettings();
+
 }

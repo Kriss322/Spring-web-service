@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 @Embeddable
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class WorldPosition implements Serializable {
     
     private int xPosition;
