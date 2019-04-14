@@ -2,10 +2,10 @@
 package com.tribe.Tribes.village.units;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
-@Entity
-@DiscriminatorValue("Nobleman")
+@Embeddable
 public class Nobleman extends SoldierUnit{
     public static String NAME = "Nobleman";
 }

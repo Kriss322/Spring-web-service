@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.*;
+import lombok.AllArgsConstructor;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,25 +17,24 @@ import lombok.NonNull;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Village implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @NonNull
     private String name;
     
-    @NonNull
-    private Integer villagePoints;
+    private int villagePoints;
 
     @ManyToOne
     @JoinColumn(name="player_id")
     private Player ownerPlayer;
 
-    @NonNull
     @Embedded
-    private Position position;
+    private WorldPosition position;
 
     private int population;
     
@@ -45,9 +45,11 @@ public class Village implements Serializable{
     private ResourceProduction resourceProducementPerHour;
 
     @ElementCollection
-    @CollectionTable(name="VILLAGE_ARMY")
-    @MapKeyJoinColumn(name="SOLDIER_ID")
-    private Map<SoldierUnit, Integer> army;
+    @CollectionTable(
+        name="UNITS",
+        joinColumns=@JoinColumn(name="VILLAGE_ID")
+    )
+    private List<SoldierUnit> army;
 
     @OneToMany(mappedBy="ownerVillage")
     private List<Building> buildings;

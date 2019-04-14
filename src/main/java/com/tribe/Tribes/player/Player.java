@@ -14,10 +14,11 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Player implements Serializable {
 
     @Id @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @NonNull
     private String name;

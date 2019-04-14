@@ -5,6 +5,10 @@
  */
 package com.tribe.Tribes.player;
 
+import com.tribe.Tribes.com.tribe.Tribes.tribe.Tribe;
+import com.tribe.Tribes.village.Village;
+import com.tribe.Tribes.village.WorldMap;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +22,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 class PlayerDTO {
     
+    private Integer id;
+    
     private String name;
 
     private int playerPoints;
-
-    private String titleInTribe;
+    
+    // private Tribe joinedTribe;
+    
+    // private String titleInTribe;
+    
+    // private List<Village> villages;
+    
+    //private WorldMap world;
 }

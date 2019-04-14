@@ -18,9 +18,12 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public Player addNewPlayer(PlayerDTO newPlayer) {
+    public Player addNewPlayer(Player newPlayer) {
         //TODO set villages too
-        //return playerRepository.save(newPlayer);
-        return null;
+        return playerRepository.save(newPlayer);
+    }
+
+    public Player getPlayerById(Integer id) {
+        return playerRepository.getOne(id);
     }
 }
