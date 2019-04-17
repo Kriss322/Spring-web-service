@@ -4,19 +4,28 @@ package com.tribe.Tribes.village.buildings;
 import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.units.SoldierUnit;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//implements unitRecruiting interface
-@Embeddable
+@Entity
+@DiscriminatorValue("Barracks")
 public class Barracks extends Building{
     
     private static String NAME = "Barracks";
 
+    @ElementCollection(targetClass = Double.class)
+    @CollectionTable(name = "TIME_FACTOR")
+    @MapKeyColumn(name="LEVEL")
+    @Column(name="TIME_FACTOR")
     private Map<Integer, Double> timeFactor;
 
+    @ElementCollection
+    @CollectionTable(
+            name="UNITS_RECRUITMENT",
+            joinColumns=@JoinColumn(name="VILLAGE_ID")
+    )
     private List<SoldierUnit> unitsUnderRecruitment;
 
     public Barracks(){

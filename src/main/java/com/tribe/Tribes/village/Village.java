@@ -26,7 +26,7 @@ public class Village implements Serializable{
 
     @NonNull
     private String name;
-    
+
     private int villagePoints;
 
     @ManyToOne
@@ -37,7 +37,7 @@ public class Village implements Serializable{
     private WorldPosition position;
 
     private int population;
-    
+
     @Embedded
     private Resources resourcesInWarehouse;
 
@@ -46,12 +46,17 @@ public class Village implements Serializable{
 
     @ElementCollection
     @CollectionTable(
-        name="UNITS",
-        joinColumns=@JoinColumn(name="VILLAGE_ID")
+            name="UNITS",
+            joinColumns=@JoinColumn(name="VILLAGE_ID")
     )
     private List<SoldierUnit> army;
 
     //TODO implement unit trainings
+    @ElementCollection
+    @CollectionTable(
+            name="UNITS",
+            joinColumns=@JoinColumn(name="VILLAGE_ID")
+    )
     private List<SoldierUnit> unitsUnderRecruitment;
 
     @OneToMany(mappedBy="ownerVillage")

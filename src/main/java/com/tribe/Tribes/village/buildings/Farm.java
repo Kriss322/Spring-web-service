@@ -3,14 +3,19 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.util.Map;
 
-@Embeddable
+@Entity
+@DiscriminatorValue("Farm")
 public class Farm extends Building{
 
     private static String NAME = "Farm";
 
+    @ElementCollection(targetClass = Integer.class)
+    @CollectionTable(name = "MAX_POPULATION")
+    @MapKeyColumn(name="MAX_POPULATION")
+    @Column(name="MAX_POPULATION")
     private Map<Integer, Integer> maximumPopulation;
 
     public Farm(){

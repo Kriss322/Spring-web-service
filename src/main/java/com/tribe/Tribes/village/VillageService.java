@@ -2,25 +2,26 @@ package com.tribe.Tribes.village;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import com.tribe.Tribes.player.Player;
-import com.tribe.Tribes.village.buildings.Academy;
-import com.tribe.Tribes.village.buildings.Building;
-import com.tribe.Tribes.village.units.SoldierUnit;
+import com.tribe.Tribes.player.PlayerRepository;
+import com.tribe.Tribes.player.PlayerService;
+import com.tribe.Tribes.village.buildings.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 @Service
 public class VillageService {
-    
+
+
+    private final PlayerRepository playerRepository;
+
     private final VillageRepository villageRepository;
     
     @Autowired
-    public VillageService(VillageRepository villageRepository) {
+    public VillageService(VillageRepository villageRepository,PlayerRepository playerRepository) {
         this.villageRepository = villageRepository;
+        this.playerRepository = playerRepository;
     }
     
     public Village getVillageById(Integer id) {
@@ -32,8 +33,8 @@ public class VillageService {
     }
     
 
-    public Village addNewVillage(Village newVillage) {
-        //TODO set villages
+    public Village addNewVillage(Player player) {
+        Village newVillage = (this.createVillage(player));
         return villageRepository.save(newVillage);
     }
 
@@ -49,12 +50,46 @@ public class VillageService {
         ResourceProduction resourceProduction = new ResourceProduction(100,100,100);
 
         List<Building> starterBuildings = new ArrayList<>();
-        starterBuildings.add(new Academy());
 
-        Village villageToCreate = new Village(null, "Village1", 125, newPlayer, position, 50, resources, resourceProduction, null,,1);
+        Village villageToCreate = new Village();
+        this.initializeBuildings(villageToCreate);
+        villageToCreate.setName("Village_1");
+        villageToCreate.setOwnerPlayer(newPlayer);
+        villageToCreate.setResourceProducementPerHour(resourceProduction);
+        villageToCreate.setPosition(position);
 
+        List<Village> villageList = new ArrayList<>();
+        villageList.add(villageToCreate);
 
-        villageToCreate.
+        Player playerToUpdate = playerRepository.getOne(newPlayer.getId());
+        playerToUpdate.setVillages(villageList);
+        playerRepository.save(playerToUpdate);
+
         return villageRepository.save(villageToCreate);
+    }
+
+    public List<Building> initializeBuildings(Village village){
+        List<Building> starterBuildingList = new ArrayList<Building>(){{
+
+            add(new Academy());/*
+            add(new Barracks());
+            add(new ClayPit());
+            add(new Farm());
+            add(new IronMine());
+            add(new Market());
+            add(new RallyPoint());
+            add(new Smithy());
+            add(new Stables());
+            add(new TimberCamp());
+            add(new VillageHeadquarters());
+            add(new Wall());
+            add(new Warehouse());
+            add(new Workshop());*/
+
+        }};
+
+        village.setBuildings(starterBuildingList);
+
+        return starterBuildingList;
     }
 }

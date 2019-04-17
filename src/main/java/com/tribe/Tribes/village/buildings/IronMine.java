@@ -7,7 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
-@Embeddable
+@Entity
+@DiscriminatorValue("IronMine")
 public class IronMine extends Building{
 
     private static String NAME = "Iron mine";

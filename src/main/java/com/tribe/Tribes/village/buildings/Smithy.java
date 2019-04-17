@@ -2,15 +2,19 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
-
-@Embeddable
+@Entity
+@DiscriminatorValue("Smithy")
 public class Smithy extends Building {
 
     private static String NAME = "Smithy";
 
+    @ElementCollection(targetClass = Double.class)
+    @CollectionTable(name = "TIME_FACTOR")
+    @MapKeyColumn(name="LEVEL")
+    @Column(name="TIME_FACTOR")
     private Map<Integer, Double> timeFactor;
 
     public Smithy(){

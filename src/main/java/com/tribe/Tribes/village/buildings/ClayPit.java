@@ -3,9 +3,12 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 
-@Embeddable
+@Embeddable@Entity
+@DiscriminatorValue("ClayPit")
 public class ClayPit extends Building{
 
     private static String NAME = "Clay pit";
