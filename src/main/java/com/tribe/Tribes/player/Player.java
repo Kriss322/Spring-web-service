@@ -32,7 +32,7 @@ public class Player implements Serializable {
 
     private String titleInTribe;
 
-    @OneToMany(mappedBy="ownerPlayer")
+    @OneToMany(mappedBy="ownerPlayer", fetch = FetchType.EAGER)
     private List<Village> villages;
 
     @ManyToOne

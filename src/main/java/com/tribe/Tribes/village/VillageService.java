@@ -52,6 +52,8 @@ public class VillageService {
         List<Building> starterBuildings = new ArrayList<>();
 
         Village villageToCreate = new Village();
+
+        //CREATE BUILDING REPOSITORY
         this.initializeBuildings(villageToCreate);
         villageToCreate.setName("Village_1");
         villageToCreate.setOwnerPlayer(newPlayer);
@@ -61,17 +63,17 @@ public class VillageService {
         List<Village> villageList = new ArrayList<>();
         villageList.add(villageToCreate);
 
-        Player playerToUpdate = playerRepository.getOne(newPlayer.getId());
-        playerToUpdate.setVillages(villageList);
-        playerRepository.save(playerToUpdate);
+        //Player playerToUpdate = playerRepository.findById(newPlayer.getId()).get();
+        newPlayer.setVillages(villageList);
+        playerRepository.save(newPlayer);
 
         return villageRepository.save(villageToCreate);
     }
 
-    public List<Building> initializeBuildings(Village village){
+    public void initializeBuildings(Village village){
         List<Building> starterBuildingList = new ArrayList<Building>(){{
 
-            add(new Academy());/*
+            add(new Academy());
             add(new Barracks());
             add(new ClayPit());
             add(new Farm());
@@ -84,12 +86,11 @@ public class VillageService {
             add(new VillageHeadquarters());
             add(new Wall());
             add(new Warehouse());
-            add(new Workshop());*/
+            add(new Workshop());
 
         }};
 
         village.setBuildings(starterBuildingList);
 
-        return starterBuildingList;
     }
 }

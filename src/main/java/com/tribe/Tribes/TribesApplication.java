@@ -33,7 +33,9 @@ public class TribesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args){
 
-		villageService.addNewVillage(new Player());
+		Player testPlayer = new Player(1, "test_player", 2, null, "leader", null, null);
+		playerService.addNewPlayer(testPlayer);
+		//villageService.addNewVillage(testPlayer);
 
 		System.out.println("Running");
 	}

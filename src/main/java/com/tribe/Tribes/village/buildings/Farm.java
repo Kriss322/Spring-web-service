@@ -4,6 +4,7 @@ package com.tribe.Tribes.village.buildings;
 import com.tribe.Tribes.village.Resources;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 
 @Entity
@@ -14,9 +15,9 @@ public class Farm extends Building{
 
     @ElementCollection(targetClass = Integer.class)
     @CollectionTable(name = "MAX_POPULATION")
-    @MapKeyColumn(name="MAX_POPULATION")
+    @MapKeyColumn(name="LEVEL")
     @Column(name="MAX_POPULATION")
-    private Map<Integer, Integer> maximumPopulation;
+    private Map<Integer, Integer> maximumPopulation = new HashMap<>();
 
     public Farm(){
         setStarterSettings();

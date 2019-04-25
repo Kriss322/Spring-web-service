@@ -16,7 +16,7 @@ public class Academy extends Building{
     @CollectionTable(name = "TIME_FACTOR")
     @MapKeyColumn(name="LEVEL")
     @Column(name="TIME_FACTOR")
-    private Map<Integer, Double> timeFactor;
+    private Map<Integer, Double> timeFactor = new HashMap<>();
 
     public Academy(){
         setStarterSettings();

@@ -5,6 +5,7 @@ import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.units.SoldierUnit;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class Workshop extends Building{
     @CollectionTable(name = "TIME_FACTOR")
     @MapKeyColumn(name="LEVEL")
     @Column(name="TIME_FACTOR")
-    private Map<Integer, Double> timeFactor;
+    private Map<Integer, Double> timeFactor = new HashMap<>();
 
 
     @ElementCollection
@@ -27,7 +28,7 @@ public class Workshop extends Building{
             name="UNITS_RECRUITMENT",
             joinColumns=@JoinColumn(name="VILLAGE_ID")
     )
-    private List<SoldierUnit> unitsUnderRecruitment;
+    private List<SoldierUnit> unitsUnderRecruitment = new ArrayList<>();
 
     public Workshop() {
         setStarterSettings();

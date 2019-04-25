@@ -4,6 +4,7 @@ package com.tribe.Tribes.village.buildings;
 import com.tribe.Tribes.village.Resources;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,14 +19,14 @@ public class VillageHeadquarters extends Building{
     @CollectionTable(name = "TIME_FACTOR")
     @MapKeyColumn(name="LEVEL")
     @Column(name="TIME_FACTOR")
-    private Map<Integer, Double> timeFactor;
+    private Map<Integer, Double> timeFactor = new HashMap<>();
 
 
     @ElementCollection(targetClass = Integer.class)
     @CollectionTable(name = "BUILDINGS_UNDER_CONSTRUCT")
     @MapKeyColumn(name="NAME")
     @Column(name="LEVEL")
-    private Map<String, Integer> buildingsUnderConstruct;
+    private Map<String, Integer> buildingsUnderConstruct = new HashMap<>();
 
     public VillageHeadquarters() {
         setStarterSettings();

@@ -3,9 +3,7 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +12,11 @@ import java.util.Map;
 public class Wall extends Building{
     private static String NAME = "Wall";
 
-    private Map<Integer, Double> defendingFactor;
+    @ElementCollection(targetClass = Double.class)
+    @CollectionTable(name = "DEFENDING_FACTOR")
+    @MapKeyColumn(name="LEVEL")
+    @Column(name="DEFENDING_FACTOR")
+    private Map<Integer, Double> defendingFactor = new HashMap<>();
 
     public Wall() {
         setStarterSettings();
