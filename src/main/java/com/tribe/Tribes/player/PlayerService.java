@@ -3,9 +3,7 @@ package com.tribe.Tribes.player;
 import java.util.List;
 
 import com.tribe.Tribes.village.Village;
-import com.tribe.Tribes.village.VillageRepository;
 import com.tribe.Tribes.village.VillageService;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +30,10 @@ public class PlayerService {
     }
 
     public Player getPlayerById(Integer id) {
-        return playerRepository.getOne(id);
+        return playerRepository.findById(id).get();
     }
 
-    /*
-    public void addVillage(Village village){
-        playerRepository.
-    }*/
+    public List<Village> getVillagesOfPlayer(Integer id) {
+        return villageService.getVillageByPlayerId(id);
+    }
 }

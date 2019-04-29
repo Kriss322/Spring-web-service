@@ -2,6 +2,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 import com.tribe.Tribes.village.units.SoldierUnit;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class Barracks extends Building{
     private static String NAME = "Barracks";
 
     @ElementCollection(targetClass = Double.class)
-    @CollectionTable(name = "TIME_FACTOR")
+    @CollectionTable(name = "TIME_FACTOR_BARRACKS")
     @MapKeyColumn(name="LEVEL")
     @Column(name="TIME_FACTOR")
     private Map<Integer, Double> timeFactor = new HashMap<>();
@@ -25,12 +26,14 @@ public class Barracks extends Building{
     @ElementCollection
     @CollectionTable(
             name="UNITS_RECRUITMENT",
-            joinColumns=@JoinColumn(name="VILLAGE_ID")
+            joinColumns=@JoinColumn(name="BUILDING_ID")
     )
     private List<SoldierUnit> unitsUnderRecruitment = new ArrayList<>();
 
-    public Barracks(){
-        setStarterSettings();
+    public Barracks(){}
+
+    public Barracks(Village village){
+        super(village);
     }
 
     @Override
@@ -50,7 +53,7 @@ public class Barracks extends Building{
         Integer clay = 200;
         Integer wood = 170;
         Integer iron = 90;
-        for(int i = 1; i < this.maxLevel; i++){
+        for(int i = 1; i <= this.maxLevel; i++){
 
             this.timeFactor.put(i, timeFactor);
             this.populationNeededForUpgrade.put(i, populationNeededForUpgrade);
@@ -62,7 +65,7 @@ public class Barracks extends Building{
             iron += (int) (iron * 0.2);
             totalOfPopulation += populationNeededForUpgrade;
             populationNeededForUpgrade += 2;
-            timeFactor -= 2;
+            timeFactor -= 0.02;
 
         }
     }

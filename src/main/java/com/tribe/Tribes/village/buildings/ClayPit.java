@@ -2,6 +2,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
@@ -15,8 +16,10 @@ public class ClayPit extends Building{
 
     private Integer productionPerHour;
 
-    public ClayPit(){
-        setStarterSettings();
+    public ClayPit(){}
+
+    public ClayPit(Village village){
+        super(village);
     }
 
     @Override
@@ -33,12 +36,11 @@ public class ClayPit extends Building{
         Integer clay = 65;
         Integer wood = 50;
         Integer iron = 40;
-        for(int i = 1; i < this.maxLevel; i++){
+        for(int i = 1; i <= this.maxLevel; i++){
 
             this.populationNeededForUpgrade.put(i, populationNeededForUpgrade);
             this.totalOfPopulation.put(i, totalOfPopulation);
             this.resourceRequirementsForUpgrade.put(i, new Resources(clay, wood, iron));
-            this.productionPerHour += (int) (productionPerHour * 0.15);
 
             clay += (int) (clay * 0.2);
             wood += (int) (wood * 0.2);

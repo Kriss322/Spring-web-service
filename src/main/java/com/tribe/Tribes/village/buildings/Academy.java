@@ -2,6 +2,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -13,13 +14,16 @@ public class Academy extends Building{
     private static String NAME = "Academy";
 
     @ElementCollection(targetClass = Double.class)
-    @CollectionTable(name = "TIME_FACTOR")
+    @CollectionTable(name = "TIME_FACTOR_ACADEMY")
     @MapKeyColumn(name="LEVEL")
     @Column(name="TIME_FACTOR")
     private Map<Integer, Double> timeFactor = new HashMap<>();
 
-    public Academy(){
-        setStarterSettings();
+    public Academy(Village village){
+        super(village);
+    }
+
+    public Academy() {
     }
 
     @Override

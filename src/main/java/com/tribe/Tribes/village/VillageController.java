@@ -1,5 +1,6 @@
 package com.tribe.Tribes.village;
 
+import com.tribe.Tribes.village.buildings.Building;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/villages")
 public class VillageController {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private static ModelMapper modelMapper = new ModelMapper();
     private VillageService villageService;
 
     @Autowired
@@ -37,13 +38,15 @@ public class VillageController {
         return convertToDto(villageService.getVillageById(id));
     }
 
-    private Village convertToEntity(VillageDTO villageDto) {
+    public static Village convertToEntity(VillageDTO villageDto) {
         Village village = modelMapper.map(villageDto, Village.class);
         return village;
     }
     
-    private VillageDTO convertToDto(Village village) {
+    public static VillageDTO convertToDto(Village village) {
         VillageDTO villageDto = modelMapper.map(village, VillageDTO.class);
+        villageDto.setBuildingsId(village.getBuildings().stream().map(Building::getId).collect(Collectors.toList()));
+        villageDto.setOwnerPlayerId(village.getOwnerPlayer().getId());
         return villageDto;
     }
     

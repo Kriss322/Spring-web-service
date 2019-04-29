@@ -2,6 +2,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -19,8 +20,10 @@ public class Farm extends Building{
     @Column(name="MAX_POPULATION")
     private Map<Integer, Integer> maximumPopulation = new HashMap<>();
 
-    public Farm(){
-        setStarterSettings();
+    public Farm(){}
+
+    public Farm(Village village){
+        super(village);
     }
 
     @Override
@@ -34,7 +37,7 @@ public class Farm extends Building{
         Integer clay = 45;
         Integer wood = 40;
         Integer iron = 30;
-        for(int i = 1; i < this.maxLevel; i++){
+        for(int i = 1; i <= this.maxLevel; i++){
 
             this.maximumPopulation.put(i, maxPopulation);
             this.populationNeededForUpgrade.put(i, 0);

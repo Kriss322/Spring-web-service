@@ -16,14 +16,14 @@ public class TribesApplication implements CommandLineRunner {
 
 	@Autowired
 	PlayerRepository playerRepository;
-        
-    @Autowired
-    VillageRepository villageRepository;
 
-    @Autowired
+	@Autowired
+	VillageRepository villageRepository;
+
+	@Autowired
 	PlayerService playerService;
 
-    @Autowired
+	@Autowired
 	VillageService villageService;
 
 	public static void main(String[] args) {
@@ -33,9 +33,12 @@ public class TribesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args){
 
-		Player testPlayer = new Player(1, "test_player", 2, null, "leader", null, null);
-		playerService.addNewPlayer(testPlayer);
-		//villageService.addNewVillage(testPlayer);
+		Player testPlayer1 = new Player(1, "test_player1", 60, null, "", null, null);
+		Player testPlayer2 = new Player(2, "test_player2", 60, null, "", null, null);
+		Player testPlayer3 = new Player(3, "test_player3", 60, null, "", null, null);
+		playerService.addNewPlayer(testPlayer1);
+		playerService.addNewPlayer(testPlayer2);
+		playerService.addNewPlayer(testPlayer3);
 
 		System.out.println("Running");
 	}

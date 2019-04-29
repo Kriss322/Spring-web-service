@@ -13,7 +13,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Data
 @NoArgsConstructor
-public class SoldierUnit implements Serializable {
+public abstract class SoldierUnit implements Serializable {
 
     private Resources resourceTrainingCost;
 

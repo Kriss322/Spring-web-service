@@ -2,6 +2,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -18,8 +19,10 @@ public class Wall extends Building{
     @Column(name="DEFENDING_FACTOR")
     private Map<Integer, Double> defendingFactor = new HashMap<>();
 
-    public Wall() {
-        setStarterSettings();
+    public Wall(){}
+
+    public Wall(Village village){
+        super(village);
     }
 
     @Override
@@ -39,7 +42,7 @@ public class Wall extends Building{
         Integer clay = 50;
         Integer wood = 100;
         Integer iron = 20;
-        for(int i = 1; i < this.maxLevel; i++){
+        for(int i = 1; i <= this.maxLevel; i++){
 
             this.defendingFactor.put(i, defFactor);
             this.populationNeededForUpgrade.put(i, populationNeededForUpgrade);
@@ -51,7 +54,7 @@ public class Wall extends Building{
             iron += (int) (iron * 0.2);
             totalOfPopulation += populationNeededForUpgrade;
             populationNeededForUpgrade++;
-            defFactor += 4;
+            defFactor += 0.04;
 
         }
     }

@@ -10,18 +10,23 @@ import com.tribe.Tribes.village.buildings.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class VillageService {
-
 
     private final PlayerRepository playerRepository;
 
     private final VillageRepository villageRepository;
+
+    private final BuildingRepository buildingRepository;
     
     @Autowired
-    public VillageService(VillageRepository villageRepository,PlayerRepository playerRepository) {
+    public VillageService(VillageRepository villageRepository,PlayerRepository playerRepository, BuildingRepository buildingRepository) {
         this.villageRepository = villageRepository;
         this.playerRepository = playerRepository;
+        this.buildingRepository = buildingRepository;
     }
     
     public Village getVillageById(Integer id) {
@@ -54,43 +59,62 @@ public class VillageService {
         Village villageToCreate = new Village();
 
         //CREATE BUILDING REPOSITORY
-        this.initializeBuildings(villageToCreate);
+
         villageToCreate.setName("Village_1");
         villageToCreate.setOwnerPlayer(newPlayer);
         villageToCreate.setResourceProducementPerHour(resourceProduction);
         villageToCreate.setPosition(position);
+        villageToCreate.setResourcesInWarehouse(new Resources(1000,1000,1000));
+        villageToCreate.setVillagePoints(60);
+
+        this.initializeBuildings(villageToCreate);
 
         List<Village> villageList = new ArrayList<>();
         villageList.add(villageToCreate);
 
-        //Player playerToUpdate = playerRepository.findById(newPlayer.getId()).get();
         newPlayer.setVillages(villageList);
+        playerRepository.save(newPlayer);
+        villageRepository.save(villageToCreate);
+
+        villageToCreate.getBuildings().stream().forEach(building -> buildingRepository.save(building));
+        villageToCreate.getBuildings().stream().forEach(building -> building.setStarterSettings());
+        villageToCreate.getBuildings().stream().forEach(building -> buildingRepository.save(building));
+
+        //Player playerToUpdate = playerRepository.findById(newPlayer.getId()).get();
         playerRepository.save(newPlayer);
 
         return villageRepository.save(villageToCreate);
     }
 
     public void initializeBuildings(Village village){
+
+
+
         List<Building> starterBuildingList = new ArrayList<Building>(){{
 
-            add(new Academy());
-            add(new Barracks());
-            add(new ClayPit());
-            add(new Farm());
-            add(new IronMine());
-            add(new Market());
-            add(new RallyPoint());
-            add(new Smithy());
-            add(new Stables());
-            add(new TimberCamp());
-            add(new VillageHeadquarters());
-            add(new Wall());
-            add(new Warehouse());
-            add(new Workshop());
+            add(new VillageHeadquarters(village));
+            add(new Stables(village));
+            add(new Academy(village));
+            add(new Barracks(village));
+            add(new ClayPit(village));
+            add(new Farm(village));
+            add(new IronMine(village));
+            add(new Market(village));
+            add(new RallyPoint(village));
+            add(new Smithy(village));
+            add(new TimberCamp(village));
+            add(new Wall(village));
+            add(new Warehouse(village));
+            add(new Workshop(village));
 
         }};
 
         village.setBuildings(starterBuildingList);
 
+    }
+
+    public List<Village> getVillageByPlayerId(Integer id) {
+        Player player = playerRepository.getOne(id);
+        return villageRepository.getVillageByPlayerId(player);
     }
 }

@@ -1,6 +1,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -14,8 +15,10 @@ public class Market extends Building{
 
     private Integer numberOfMerchants;
 
-    public Market(){
-        setStarterSettings();
+    public Market(){}
+
+    public Market(Village village){
+        super(village);
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Market extends Building{
         Integer clay = 100;
         Integer wood = 100;
         Integer iron = 100;
-        for(int i = 1; i < this.maxLevel; i++){
+        for(int i = 1; i <= this.maxLevel; i++){
 
             this.populationNeededForUpgrade.put(i, populationNeededForUpgrade);
             this.totalOfPopulation.put(i, totalOfPopulation);

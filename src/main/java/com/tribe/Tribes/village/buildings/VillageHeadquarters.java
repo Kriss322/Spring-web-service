@@ -2,6 +2,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class VillageHeadquarters extends Building{
     private static String NAME = "VillageHeadquarters";
 
     @ElementCollection(targetClass = Double.class)
-    @CollectionTable(name = "TIME_FACTOR")
+    @CollectionTable(name = "TIME_FACTOR_HQ")
     @MapKeyColumn(name="LEVEL")
     @Column(name="TIME_FACTOR")
     private Map<Integer, Double> timeFactor = new HashMap<>();
@@ -28,8 +29,12 @@ public class VillageHeadquarters extends Building{
     @Column(name="LEVEL")
     private Map<String, Integer> buildingsUnderConstruct = new HashMap<>();
 
-    public VillageHeadquarters() {
-        setStarterSettings();
+    public VillageHeadquarters(){
+
+    }
+
+    public VillageHeadquarters(Village village) {
+        super(village);
     }
 
     @Override
@@ -45,7 +50,7 @@ public class VillageHeadquarters extends Building{
         Integer clay = 90;
         Integer wood = 80;
         Integer iron = 70;
-        for(int i = 1; i < this.maxLevel; i++){
+        for(int i = 1; i <= this.maxLevel; i++){
 
             this.timeFactor.put(i, timeFactor);
             this.populationNeededForUpgrade.put(i, populationNeededForUpgrade);
@@ -57,7 +62,7 @@ public class VillageHeadquarters extends Building{
             iron += (int) (iron * 0.2);
             totalOfPopulation += populationNeededForUpgrade;
             populationNeededForUpgrade += 2;
-            timeFactor -= 4;
+            timeFactor -= 0.03;
 
         }
     }

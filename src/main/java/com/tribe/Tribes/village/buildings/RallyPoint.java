@@ -1,6 +1,7 @@
 package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
+import com.tribe.Tribes.village.Village;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
@@ -14,8 +15,10 @@ public class RallyPoint extends Building{
 
     private static String NAME = "Rally point";
 
-    public RallyPoint() {
-        setStarterSettings();
+    public RallyPoint(){}
+
+    public RallyPoint(Village village) {
+        super(village);
     }
 
     @Override

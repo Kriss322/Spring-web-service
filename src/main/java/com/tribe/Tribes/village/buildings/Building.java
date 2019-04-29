@@ -16,11 +16,11 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Building_Type")
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 public abstract class Building implements Serializable {
 
-    @Id @GeneratedValue
-    private Long Id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Id;
 
     @ManyToOne
     @JoinColumn(name="village_id")
@@ -57,5 +57,14 @@ public abstract class Building implements Serializable {
     protected Map<String, Integer> requirements = new HashMap<>();
 
     public abstract void setStarterSettings();
+
+    public Building(Village village){
+        this.ownerVillage = village;
+    }
+
+    public Building(){
+
+    }
+
 
 }

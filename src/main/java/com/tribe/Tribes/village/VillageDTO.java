@@ -20,7 +20,7 @@ public class VillageDTO {
     
     private int villagePoints;
     
-    private Player ownerPlayer; //??????? if valid from db
+    private Integer ownerPlayerId;
 //    
     private WorldPosition position;
 //    
@@ -28,9 +28,9 @@ public class VillageDTO {
 //    
     private ResourceProduction resourceProducementPerHour;
 //    
-    private List<SoldierUnit> army;
+    // private List<SoldierUnit> army;
 //    
-    private List<Building> buildings;
+    private List<Integer> buildingsId;
 //    
     private WorldMap worldMap;
 //    

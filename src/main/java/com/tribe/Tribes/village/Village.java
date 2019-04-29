@@ -21,7 +21,7 @@ import lombok.NonNull;
 public class Village implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NonNull
@@ -49,17 +49,17 @@ public class Village implements Serializable{
             name="UNITS",
             joinColumns=@JoinColumn(name="VILLAGE_ID")
     )
-    private List<SoldierUnit> army;
+    private List<SoldierUnit> unitsAtHome;
 
     //TODO implement unit trainings
     @ElementCollection
     @CollectionTable(
-            name="UNITS",
+            name="UNITS_RECRUITMENT",
             joinColumns=@JoinColumn(name="VILLAGE_ID")
     )
     private List<SoldierUnit> unitsUnderRecruitment;
 
-    @OneToMany(mappedBy="ownerVillage")
+    @OneToMany(mappedBy="ownerVillage", fetch = FetchType.EAGER)
     private List<Building> buildings;
 
     @ManyToOne
