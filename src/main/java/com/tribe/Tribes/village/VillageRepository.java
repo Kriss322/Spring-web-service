@@ -14,6 +14,9 @@ public interface VillageRepository extends JpaRepository<Village, Integer> {
 
     List<Village> findByName(String name);
 
-    @Query("SELECT v FROM Village v WHERE v.ownerPlayer = :id")
-    List<Village> getVillageByPlayerId(@Param("id") Player id);
+    @Query("SELECT v FROM Village v WHERE v.ownerPlayer = :player")
+    List<Village> getVillageByPlayerId(@Param("player") Player player);
+
+    @Query("SELECT v FROM Village v WHERE v.ownerPlayer = :player AND v.id = :id")
+    Village getOneVillageOfPlayer(@Param("player") Player player, @Param("id") Integer id);
 }

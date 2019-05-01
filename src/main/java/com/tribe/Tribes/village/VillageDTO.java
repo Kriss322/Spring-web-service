@@ -31,6 +31,8 @@ public class VillageDTO {
     // private List<SoldierUnit> army;
 //    
     private List<Integer> buildingsId;
+
+    private List<Integer> buildingsLevel;
 //    
     private WorldMap worldMap;
 //    

@@ -117,4 +117,33 @@ public class VillageService {
         Player player = playerRepository.getOne(id);
         return villageRepository.getVillageByPlayerId(player);
     }
+
+    public Village getOneVillageOfPlayer(Integer playerId, Integer villageId){
+        Player player = playerRepository.getOne(playerId);
+        return villageRepository.getOneVillageOfPlayer(player, villageId);
+    }
+
+    public List<Village> setAbandonedVillages(Integer playerId){
+        Player player = playerRepository.getOne(playerId);
+        List<Village> villagesToAbandon = villageRepository.getVillageByPlayerId(player);
+
+        for (Village village: villagesToAbandon) {
+
+            village.setOwnerPlayer(null);
+            village.setName("Abandoned village");
+        }
+
+        return villageRepository.saveAll(villagesToAbandon);
+    }
+
+    public Village deleteVillage(Integer villageId) {
+
+        Village villageToDelete = getVillageById(villageId);
+
+        //Player player = villageToDelete.getOwnerPlayer();
+
+        villageRepository.delete(villageToDelete);
+
+        return villageToDelete;
+    }
 }

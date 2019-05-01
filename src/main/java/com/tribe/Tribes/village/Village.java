@@ -59,7 +59,7 @@ public class Village implements Serializable{
     )
     private List<SoldierUnit> unitsUnderRecruitment;
 
-    @OneToMany(mappedBy="ownerVillage", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="ownerVillage", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Building> buildings;
 
     @ManyToOne

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
 
-import javax.annotation.Resource;
 
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
@@ -46,6 +45,12 @@ public class PlayerController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{playerId}/villages/{villageId}")
+    @ResponseBody
+    public VillageDTO getOneVillageOfPlayer(@PathVariable Integer playerId, @PathVariable Integer villageId){
+        Village villageEntity = playerService.getOneVillageOfPlayer(playerId, villageId);
+        return VillageController.convertToDto(villageEntity);
+    }
 
     @GetMapping
     public List<PlayerDTO> getAllPlayers(){
@@ -62,6 +67,13 @@ public class PlayerController {
         return convertToDto(playerCreated);
     }
 
+    @DeleteMapping("/{playerId}")
+    public PlayerDTO deletePlayer(@PathVariable Integer playerId){
+
+        Player playerEntity = playerService.deletePlayer(playerId);
+        return convertToDto(playerEntity);
+    }
+
     private Player convertToEntity(PlayerDTO playerDto) {
        Player player = modelMapper.map(playerDto, Player.class);
        return player;
@@ -69,7 +81,12 @@ public class PlayerController {
 
     private PlayerDTO convertToDto(Player player) {
         PlayerDTO playerDto = modelMapper.map(player, PlayerDTO.class);
-        playerDto.setVillageIds(player.getVillages().stream().map(Village::getId).collect(Collectors.toList()));
+
+        playerDto.setVillageIds(player.getVillages()
+                .stream()
+                .map(Village::getId)
+                .collect(Collectors.toList()));
+
         return playerDto;
     }
     

@@ -29,6 +29,12 @@ public class VillageHeadquarters extends Building{
     @Column(name="LEVEL")
     private Map<String, Integer> buildingsUnderConstruct = new HashMap<>();
 
+    @ElementCollection(targetClass = Integer.class)
+    @CollectionTable(name = "BUILDINGS_UNDER_CONSTRUCT_TIME")
+    @MapKeyColumn(name="NAME")
+    @Column(name="TIME")
+    private Map<String, Integer> buildingsUnderConstructTime = new HashMap<>();
+
     public VillageHeadquarters(){
 
     }

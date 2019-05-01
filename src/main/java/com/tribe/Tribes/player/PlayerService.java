@@ -3,6 +3,7 @@ package com.tribe.Tribes.player;
 import java.util.List;
 
 import com.tribe.Tribes.village.Village;
+import com.tribe.Tribes.village.VillageDTO;
 import com.tribe.Tribes.village.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,20 @@ public class PlayerService {
     public List<Village> getVillagesOfPlayer(Integer id) {
         return villageService.getVillageByPlayerId(id);
     }
+
+    public Village getOneVillageOfPlayer(Integer playerId, Integer villageId) {
+        return villageService.getOneVillageOfPlayer(playerId, villageId);
+    }
+
+    public Player deletePlayer(Integer playerId) {
+
+        Player player = getPlayerById(playerId);
+
+        villageService.setAbandonedVillages(playerId);
+
+        playerRepository.delete(player);
+
+        return player;
+    }
+
 }

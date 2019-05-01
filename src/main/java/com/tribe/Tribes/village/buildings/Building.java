@@ -8,7 +8,6 @@ import java.util.Map;
 
 import com.tribe.Tribes.village.Village;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 

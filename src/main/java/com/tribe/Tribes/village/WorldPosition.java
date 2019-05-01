@@ -12,7 +12,7 @@ import lombok.Setter;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@Data
 public class WorldPosition implements Serializable {
     
     private int xPosition;

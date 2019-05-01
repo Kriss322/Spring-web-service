@@ -34,7 +34,6 @@ class PlayerDTO {
 
     // private String titleInTribe;
 
-    @JsonProperty
     private List<Integer> villageIds;
 
     //private WorldMap world;
