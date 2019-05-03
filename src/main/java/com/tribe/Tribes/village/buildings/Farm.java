@@ -12,7 +12,6 @@ import java.util.Map;
 @DiscriminatorValue("Farm")
 public class Farm extends Building{
 
-    private static String NAME = "Farm";
 
     @ElementCollection(targetClass = Integer.class)
     @CollectionTable(name = "MAX_POPULATION")
@@ -24,6 +23,7 @@ public class Farm extends Building{
 
     public Farm(Village village){
         super(village);
+        this.setName("Farm");
     }
 
     @Override

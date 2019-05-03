@@ -12,8 +12,27 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Resources implements Serializable{
+public class Resources implements Serializable, Comparable<Resources> {
     private Integer clay;
     private Integer wood;
     private Integer iron;
+
+    @Override
+    public int compareTo(Resources r) {
+        if(r.getIron() > this.iron && r.getWood() > this.wood && r.getClay() > this.clay)
+            return 1;
+        else return 0;
+    }
+
+    public void subtract(Integer clay, Integer wood, Integer iron){
+        this.clay -= clay;
+        this.wood -= wood;
+        this.iron -= iron;
+    }
+
+    public void subtract(Resources r){
+        this.clay -= r.getClay();
+        this.wood -= r.getWood();
+        this.iron -= r.getIron();
+    }
 }

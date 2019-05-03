@@ -2,16 +2,15 @@ package com.tribe.Tribes.village;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.tribe.Tribes.player.Player;
 import com.tribe.Tribes.player.PlayerRepository;
-import com.tribe.Tribes.player.PlayerService;
 import com.tribe.Tribes.village.buildings.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @Service
 public class VillageService {
@@ -52,19 +51,15 @@ public class VillageService {
         position.setZPosition((int) (Math.random()*99+1));
 
         Resources resources = new Resources(500,500,500);
-        ResourceProduction resourceProduction = new ResourceProduction(100,100,100);
-
-        List<Building> starterBuildings = new ArrayList<>();
+        ResourceProduction resourceProduction = new ResourceProduction(30,30,30);
 
         Village villageToCreate = new Village();
-
-        //CREATE BUILDING REPOSITORY
 
         villageToCreate.setName("Village_1");
         villageToCreate.setOwnerPlayer(newPlayer);
         villageToCreate.setResourceProducementPerHour(resourceProduction);
         villageToCreate.setPosition(position);
-        villageToCreate.setResourcesInWarehouse(new Resources(1000,1000,1000));
+        villageToCreate.setResourcesInWarehouse(resources);
         villageToCreate.setVillagePoints(60);
 
         this.initializeBuildings(villageToCreate);
@@ -145,5 +140,57 @@ public class VillageService {
         villageRepository.delete(villageToDelete);
 
         return villageToDelete;
+    }
+
+    @Async
+    public void updateResources(List<Village> villages) {
+
+    //TODO beautify this
+        for (Village village: villages) {
+
+            Resources currentResourcesInWarehouse = village.getResourcesInWarehouse();
+
+            ResourceProduction currentResourceProduction = village.getResourceProducementPerHour();
+
+            Warehouse wareHouse = (Warehouse) village.getBuildings()
+                    .stream()
+                    .filter(building -> building instanceof Warehouse)
+                    .collect(Collectors.toList()).get(0);
+
+            Integer maxResource = wareHouse.getCapacity().get(wareHouse.getLevel());
+            if(maxResource > village.getResourcesInWarehouse().getClay()){
+
+                village.setResourcesInWarehouse(
+                        new Resources(
+                        currentResourcesInWarehouse.getClay() + currentResourceProduction.getClayProdPerHour(),
+                        currentResourcesInWarehouse.getWood(),
+                        currentResourcesInWarehouse.getIron()
+                ));
+                currentResourcesInWarehouse = village.getResourcesInWarehouse();
+            }
+            if(maxResource > village.getResourcesInWarehouse().getWood()){
+
+                village.setResourcesInWarehouse(
+                        new Resources(
+                                currentResourcesInWarehouse.getClay(),
+                                currentResourcesInWarehouse.getWood() + currentResourceProduction.getWoodProdPerHour(),
+                                currentResourcesInWarehouse.getIron()
+                        ));
+                currentResourcesInWarehouse = village.getResourcesInWarehouse();
+            }
+            if(maxResource > village.getResourcesInWarehouse().getIron()){
+
+                village.setResourcesInWarehouse(
+                        new Resources(
+                                currentResourcesInWarehouse.getClay(),
+                                currentResourcesInWarehouse.getWood(),
+                                currentResourcesInWarehouse.getIron() + currentResourceProduction.getIronProdPerHour()
+                        ));
+                currentResourcesInWarehouse = village.getResourcesInWarehouse();
+            }
+            }
+
+
+        villageRepository.saveAll(villages);
     }
 }

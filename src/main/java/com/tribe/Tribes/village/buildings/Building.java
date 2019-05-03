@@ -21,6 +21,10 @@ public abstract class Building implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
+    private String name;
+
+    protected Integer productionPerHour;
+
     @ManyToOne
     @JoinColumn(name="village_id")
     protected Village ownerVillage;

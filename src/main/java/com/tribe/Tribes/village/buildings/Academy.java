@@ -11,7 +11,6 @@ import java.util.Map;
 @Entity
 @DiscriminatorValue("Academy")
 public class Academy extends Building{
-    private static String NAME = "Academy";
 
     @ElementCollection(targetClass = Double.class)
     @CollectionTable(name = "TIME_FACTOR_ACADEMY")
@@ -21,6 +20,7 @@ public class Academy extends Building{
 
     public Academy(Village village){
         super(village);
+        this.setName("Academy");
     }
 
     public Academy() {

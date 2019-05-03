@@ -14,8 +14,6 @@ import java.util.Map;
 @DiscriminatorValue("VillageHeadquarters")
 public class VillageHeadquarters extends Building{
 
-    private static String NAME = "VillageHeadquarters";
-
     @ElementCollection(targetClass = Double.class)
     @CollectionTable(name = "TIME_FACTOR_HQ")
     @MapKeyColumn(name="LEVEL")
@@ -41,6 +39,7 @@ public class VillageHeadquarters extends Building{
 
     public VillageHeadquarters(Village village) {
         super(village);
+        this.setName("VillageHeadquarters");
     }
 
     @Override

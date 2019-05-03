@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootConfiguration
 @SpringBootApplication
 public class TribesApplication implements CommandLineRunner {
@@ -39,6 +41,30 @@ public class TribesApplication implements CommandLineRunner {
 		playerService.addNewPlayer(testPlayer1);
 		playerService.addNewPlayer(testPlayer2);
 		playerService.addNewPlayer(testPlayer3);
+
+		//villageService.deleteVillage(1);
+
+		List<Village> villagesInDb = villageRepository.findAll();
+
+
+		new Thread(() -> {
+			while(true){
+
+				villageService.updateResources(villageRepository.findAll());
+				try {
+					/*PerHour
+					Thread.sleep(360000);*/
+
+					//For testing
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+
+
+
 
 		System.out.println("Running");
 	}

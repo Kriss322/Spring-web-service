@@ -65,4 +65,5 @@ public class Village implements Serializable{
     @ManyToOne
     @JoinColumn(name="worldmap_id")
     private WorldMap worldMap;
+
 }

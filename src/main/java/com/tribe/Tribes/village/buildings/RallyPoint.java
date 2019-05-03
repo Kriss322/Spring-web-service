@@ -13,12 +13,11 @@ import java.util.HashMap;
 @DiscriminatorValue("RallyPoint")
 public class RallyPoint extends Building{
 
-    private static String NAME = "Rally point";
-
     public RallyPoint(){}
 
     public RallyPoint(Village village) {
         super(village);
+        this.setName("RallyPoint");
     }
 
     @Override

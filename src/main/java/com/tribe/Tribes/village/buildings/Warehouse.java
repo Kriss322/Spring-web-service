@@ -3,6 +3,7 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.Village;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -10,11 +11,10 @@ import java.util.Map;
 
 @Entity
 @DiscriminatorValue("Warehouse")
+@Data
 public class Warehouse extends Building{
 
-    private static String NAME = "Warehouse";
-
-    @ElementCollection(targetClass = Integer.class)
+    @ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "CAPACITY")
     @MapKeyColumn(name="LEVEL")
     @Column(name="CAPACITY")
@@ -24,6 +24,7 @@ public class Warehouse extends Building{
 
     public Warehouse(Village village){
         super(village);
+        this.setName("Warehouse");
     }
 
     @Override

@@ -16,7 +16,6 @@ public class BuildingDTO {
 
     private int level;
 
-    private Village ownerVillage;
-
+    private Integer ownerVillageId;
 
 }

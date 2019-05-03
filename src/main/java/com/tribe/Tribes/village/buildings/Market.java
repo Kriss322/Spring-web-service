@@ -5,13 +5,10 @@ import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
 import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 @DiscriminatorValue("Market")
 public class Market extends Building{
-
-    private static String NAME = "Market";
 
     private Integer numberOfMerchants;
 
@@ -19,6 +16,7 @@ public class Market extends Building{
 
     public Market(Village village){
         super(village);
+        this.setName("Market");
     }
 
     @Override
@@ -27,6 +25,8 @@ public class Market extends Building{
         this.level = 0;
 
         this.maxLevel = 25;
+
+        this.numberOfMerchants = 10;
 
         this.requirements = new HashMap<String, Integer>(){{
             requirements.put("VillageHeadquarters", 3);

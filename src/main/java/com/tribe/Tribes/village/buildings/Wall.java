@@ -11,7 +11,6 @@ import java.util.Map;
 @Entity
 @DiscriminatorValue("Wall")
 public class Wall extends Building{
-    private static String NAME = "Wall";
 
     @ElementCollection(targetClass = Double.class)
     @CollectionTable(name = "DEFENDING_FACTOR")
@@ -23,6 +22,7 @@ public class Wall extends Building{
 
     public Wall(Village village){
         super(village);
+        this.setName("Wall");
     }
 
     @Override

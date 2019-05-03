@@ -3,6 +3,7 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.Village;
+import lombok.Data;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
@@ -10,16 +11,14 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("IronMine")
+@Data
 public class IronMine extends Building{
-
-    private static String NAME = "Iron mine";
-
-    private Integer productionPerHour;
 
     public IronMine(){}
 
     public IronMine(Village village){
         super(village);
+        this.setName("IronMine");
     }
 
     @Override

@@ -15,8 +15,6 @@ import java.util.Map;
 @Entity
 @DiscriminatorValue("Stables")
 public class Stables extends Building{
-    
-    private static String NAME = "Stables";
 
     @ElementCollection(targetClass = Double.class)
     @CollectionTable(name = "TIME_FACTOR_STABLES")
@@ -36,6 +34,7 @@ public class Stables extends Building{
 
     public Stables(Village village){
         super(village);
+        this.setName("Stables");
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.tribe.Tribes.village.buildings;
 
 import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.Village;
+import lombok.Data;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
@@ -11,16 +12,14 @@ import javax.persistence.Entity;
 //implements resourcesProduction interface?
 @Entity
 @DiscriminatorValue("TimberCamp")
+@Data
 public class TimberCamp extends Building{
-
-    private static String NAME = "Timber camp";
-
-    private Integer productionPerHour;
 
     public TimberCamp(){}
 
     public TimberCamp(Village village){
         super(village);
+        this.setName("TimberCamp");
     }
 
     @Override

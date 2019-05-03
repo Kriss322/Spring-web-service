@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.util.Collection;
 import java.util.List;
 
 @RepositoryRestResource
@@ -19,4 +18,5 @@ public interface VillageRepository extends JpaRepository<Village, Integer> {
 
     @Query("SELECT v FROM Village v WHERE v.ownerPlayer = :player AND v.id = :id")
     Village getOneVillageOfPlayer(@Param("player") Player player, @Param("id") Integer id);
+
 }

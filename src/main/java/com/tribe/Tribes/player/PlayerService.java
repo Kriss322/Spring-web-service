@@ -3,7 +3,6 @@ package com.tribe.Tribes.player;
 import java.util.List;
 
 import com.tribe.Tribes.village.Village;
-import com.tribe.Tribes.village.VillageDTO;
 import com.tribe.Tribes.village.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
