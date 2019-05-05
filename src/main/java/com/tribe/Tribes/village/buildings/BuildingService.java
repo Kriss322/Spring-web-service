@@ -50,7 +50,7 @@ public class BuildingService {
                     //((ClayPit) buildingToLevelUp).setProductionPerHour(((ClayPit) buildingToLevelUp).getProductionPerHour() + 30);
 
                     ResourceProduction prod = ownerVillage.getResourceProducementPerHour();
-                    prod.addClay(buildingToLevelUp.getProductionPerHour());
+                    prod.addClay(30);
                     buildingToLevelUp.setProductionPerHour(buildingToLevelUp.getProductionPerHour() + 30);
                     ownerVillage.setResourceProducementPerHour(prod);
                 }
@@ -58,7 +58,7 @@ public class BuildingService {
                 else if(buildingToLevelUp.getName().equals("IronMine")){
 
                     ResourceProduction prod = ownerVillage.getResourceProducementPerHour();
-                    prod.addIron(buildingToLevelUp.getProductionPerHour());
+                    prod.addIron(30);
                     buildingToLevelUp.setProductionPerHour(buildingToLevelUp.getProductionPerHour() + 30);
                     ownerVillage.setResourceProducementPerHour(prod);
                 }
@@ -66,7 +66,7 @@ public class BuildingService {
                 else if(buildingToLevelUp.getName().equals("TimberCamp")){
 
                     ResourceProduction prod = ownerVillage.getResourceProducementPerHour();
-                    prod.addWood(buildingToLevelUp.getProductionPerHour());
+                    prod.addWood(30);
                     buildingToLevelUp.setProductionPerHour(buildingToLevelUp.getProductionPerHour() + 30);
                     ownerVillage.setResourceProducementPerHour(prod);
                 }

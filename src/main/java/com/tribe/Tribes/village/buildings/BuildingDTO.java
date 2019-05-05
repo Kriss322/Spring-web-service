@@ -1,6 +1,5 @@
 package com.tribe.Tribes.village.buildings;
 
-import com.tribe.Tribes.village.Village;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +15,7 @@ public class BuildingDTO {
 
     private int level;
 
+    //VillageDTO
     private Integer ownerVillageId;
 
 }

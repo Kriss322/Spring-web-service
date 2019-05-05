@@ -158,7 +158,7 @@ public class VillageService {
                     .collect(Collectors.toList()).get(0);
 
             Integer maxResource = wareHouse.getCapacity().get(wareHouse.getLevel());
-            if(maxResource > village.getResourcesInWarehouse().getClay()){
+            if(maxResource > (village.getResourcesInWarehouse().getClay() + currentResourceProduction.getClayProdPerHour())){
 
                 village.setResourcesInWarehouse(
                         new Resources(
@@ -168,7 +168,7 @@ public class VillageService {
                 ));
                 currentResourcesInWarehouse = village.getResourcesInWarehouse();
             }
-            if(maxResource > village.getResourcesInWarehouse().getWood()){
+            if(maxResource > (village.getResourcesInWarehouse().getWood() + currentResourceProduction.getWoodProdPerHour())){
 
                 village.setResourcesInWarehouse(
                         new Resources(
@@ -178,7 +178,7 @@ public class VillageService {
                         ));
                 currentResourcesInWarehouse = village.getResourcesInWarehouse();
             }
-            if(maxResource > village.getResourcesInWarehouse().getIron()){
+            if(maxResource > (village.getResourcesInWarehouse().getIron() + currentResourceProduction.getIronProdPerHour())){
 
                 village.setResourcesInWarehouse(
                         new Resources(

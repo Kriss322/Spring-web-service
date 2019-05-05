@@ -3,6 +3,7 @@ package com.tribe.Tribes.village;
 
 import com.tribe.Tribes.player.Player;
 import com.tribe.Tribes.village.buildings.Building;
+import com.tribe.Tribes.village.buildings.BuildingDTO;
 import com.tribe.Tribes.village.units.SoldierUnit;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class VillageDTO {
 //    
     // private List<SoldierUnit> army;
 //    
-    private List<Integer> buildingsId;
+    private List<BuildingDTO> buildings;
 
     private List<Integer> buildingsLevel;
 //    

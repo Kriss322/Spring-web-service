@@ -3,6 +3,7 @@ package com.tribe.Tribes.player;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.tribe.Tribes.com.tribe.Tribes.tribe.TribeController;
 import com.tribe.Tribes.village.Village;
 import com.tribe.Tribes.village.VillageController;
 import com.tribe.Tribes.village.VillageDTO;
@@ -16,7 +17,7 @@ import org.modelmapper.ModelMapper;
 @RequestMapping("/players")
 public class PlayerController {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private static ModelMapper modelMapper = new ModelMapper();
 
     private final PlayerService playerService;
 
@@ -74,18 +75,26 @@ public class PlayerController {
         return convertToDto(playerEntity);
     }
 
-    private Player convertToEntity(PlayerDTO playerDto) {
+    public static Player convertToEntity(PlayerDTO playerDto) {
        Player player = modelMapper.map(playerDto, Player.class);
        return player;
     }
 
-    private PlayerDTO convertToDto(Player player) {
+    public static PlayerDTO convertToDto(Player player) {
         PlayerDTO playerDto = modelMapper.map(player, PlayerDTO.class);
 
+        /*
         playerDto.setVillageIds(player.getVillages()
                 .stream()
                 .map(Village::getId)
                 .collect(Collectors.toList()));
+        */
+
+
+        if(player.getJoinedTribe() != null){
+            playerDto.setJoinedTribe(TribeController.convertToDto(player.getJoinedTribe()));
+        }
+
 
         return playerDto;
     }

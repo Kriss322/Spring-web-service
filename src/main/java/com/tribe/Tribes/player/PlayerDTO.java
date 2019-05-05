@@ -5,8 +5,12 @@
  */
 package com.tribe.Tribes.player;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tribe.Tribes.com.tribe.Tribes.tribe.Tribe;
+import com.tribe.Tribes.com.tribe.Tribes.tribe.TribeDTO;
 import com.tribe.Tribes.village.Village;
 import com.tribe.Tribes.village.VillageDTO;
 import com.tribe.Tribes.village.WorldMap;
@@ -22,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class PlayerDTO {
+public class PlayerDTO {
     
     private Integer id;
     
@@ -30,11 +34,13 @@ class PlayerDTO {
 
     private int playerPoints;
 
-    private Tribe joinedTribe;
+    private TribeDTO joinedTribe;
 
     // private String titleInTribe;
 
-    private List<Integer> villageIds;
+
+    //VillageDTO
+    private List<VillageDTO> villages;
 
     //private WorldMap world;
 }

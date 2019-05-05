@@ -77,11 +77,12 @@ public class VillageController {
 
         List<Building> s = village.getBuildings();
 
+        /*
         villageDto.setBuildingsId(village.getBuildings()
                 .stream().distinct()
                 .map(Building::getId)
                 .collect(Collectors.toList()));
-
+*/
         villageDto.setOwnerPlayerId( (village.getOwnerPlayer() == null) ? null : village.getOwnerPlayer().getId());
 
         villageDto.setBuildingsLevel(village.getBuildings()

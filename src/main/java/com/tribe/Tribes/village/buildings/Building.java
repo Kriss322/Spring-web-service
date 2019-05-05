@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.tribe.Tribes.village.Village;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,7 +17,8 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "Building_Type")
 @Data
 //@NoArgsConstructor
-public abstract class Building implements Serializable {
+@AllArgsConstructor
+public class Building implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
@@ -59,7 +61,7 @@ public abstract class Building implements Serializable {
     @Column(name="NAME")
     protected Map<String, Integer> requirements = new HashMap<>();
 
-    public abstract void setStarterSettings();
+    public void setStarterSettings(){}
 
     public Building(Village village){
         this.ownerVillage = village;
