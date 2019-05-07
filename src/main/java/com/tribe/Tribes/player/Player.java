@@ -39,4 +39,7 @@ public class Player implements Serializable {
     @JoinColumn(name="worldmap_id")
     private WorldMap world;
 
+    public void addPoints(int points){
+        this.playerPoints += points;
+    }
 }

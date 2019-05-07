@@ -1,8 +1,12 @@
 package com.tribe.Tribes.village.buildings;
 
+import com.tribe.Tribes.village.Resources;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -17,5 +21,11 @@ public class BuildingDTO {
 
     //VillageDTO
     private Integer ownerVillageId;
+
+    private Resources resourcesForNextLevel;
+
+    private Integer populationNeededForNextLevel;
+
+    protected Map<String, Integer> requirements;
 
 }

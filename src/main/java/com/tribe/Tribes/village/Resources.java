@@ -19,7 +19,7 @@ public class Resources implements Serializable, Comparable<Resources> {
 
     @Override
     public int compareTo(Resources r) {
-        if(r.getIron() > this.iron && r.getWood() > this.wood && r.getClay() > this.clay)
+        if(r.getIron() > this.iron || r.getWood() > this.wood || r.getClay() > this.clay)
             return 1;
         else return 0;
     }

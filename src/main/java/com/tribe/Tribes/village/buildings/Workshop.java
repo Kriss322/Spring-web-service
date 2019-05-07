@@ -43,10 +43,8 @@ public class Workshop extends Building{
 
         this.maxLevel = 15;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("VillageHeadquarters", 10);
-            requirements.put("Smithy", 10);
-        }};
+        this.requirements.put("VillageHeadquarters", 10);
+        this.requirements.put("Smithy", 10);
 
         Double timeFactor = 0.63;
         Integer populationNeededForUpgrade = 1;

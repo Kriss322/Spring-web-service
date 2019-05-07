@@ -44,12 +44,10 @@ public class Stables extends Building{
 
         this.maxLevel = 20;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("VillageHeadquarters", 10);
-            requirements.put("Barracks", 5);
-            requirements.put("Smithy", 5);
+        this.requirements.put("VillageHeadquarters", 10);
+        this.requirements.put("Barracks", 5);
+        this.requirements.put("Smithy", 5);
 
-        }};
 
         Double timeFactor = 0.63;
         Integer populationNeededForUpgrade = 1;

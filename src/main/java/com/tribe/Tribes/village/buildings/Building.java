@@ -61,6 +61,12 @@ public class Building implements Serializable {
     @Column(name="NAME")
     protected Map<String, Integer> requirements = new HashMap<>();
 
+    @ElementCollection(targetClass = Integer.class)
+    @CollectionTable(name = "MAX_POPULATION")
+    @MapKeyColumn(name="LEVEL")
+    @Column(name="MAX_POPULATION")
+    protected Map<Integer, Integer> maximumPopulation = new HashMap<>();
+
     public void setStarterSettings(){}
 
     public Building(Village village){

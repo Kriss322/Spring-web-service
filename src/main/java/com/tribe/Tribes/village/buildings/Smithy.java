@@ -29,10 +29,9 @@ public class Smithy extends Building {
 
         this.maxLevel = 20;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("VillageHeadquarters", 5);
-            requirements.put("Barracks", 1);
-        }};
+        this.requirements.put("VillageHeadquarters", 5);
+        this.requirements.put("Barracks", 1);
+
 
         Double timeFactor = 0.91;
         Integer populationNeededForUpgrade = 1;

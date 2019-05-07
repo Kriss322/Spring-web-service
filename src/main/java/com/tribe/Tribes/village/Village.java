@@ -36,7 +36,9 @@ public class Village implements Serializable{
     @Embedded
     private WorldPosition position;
 
-    private int population;
+    private int currentPopulation;
+
+    private int maxPopulation;
 
     @Embedded
     private Resources resourcesInWarehouse;
@@ -65,5 +67,13 @@ public class Village implements Serializable{
     @ManyToOne
     @JoinColumn(name="worldmap_id")
     private WorldMap worldMap;
+
+    public void addToCurrentPopulation(int population){
+        this.currentPopulation += population;
+    }
+
+    public void addToMaxPopulation(int population){
+        this.maxPopulation += population;
+    }
 
 }

@@ -27,8 +27,6 @@ public class RallyPoint extends Building{
 
         this.maxLevel = 1;
 
-        this.resourceRequirementsForUpgrade = new HashMap<Integer, Resources>(){{
-            resourceRequirementsForUpgrade.put(1, new Resources(10,40,30));
-        }};
+        this.resourceRequirementsForUpgrade.put(1, new Resources(10,40,30));
     }
 }

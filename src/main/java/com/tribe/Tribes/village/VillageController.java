@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,21 +76,32 @@ public class VillageController {
 
         VillageDTO villageDto = modelMapper.map(village, VillageDTO.class);
 
-        List<Building> s = village.getBuildings();
+        /*List<Building> s = village.getBuildings();
 
-        /*
+
         villageDto.setBuildingsId(village.getBuildings()
                 .stream().distinct()
                 .map(Building::getId)
                 .collect(Collectors.toList()));
 */
-        villageDto.setOwnerPlayerId( (village.getOwnerPlayer() == null) ? null : village.getOwnerPlayer().getId());
+        List<BuildingDTO> buildings = new ArrayList<>();
 
+        for (Building building: village.getBuildings()) {
+            buildings.add(BuildingController.convertToDto(building));
+
+        }
+
+
+
+        villageDto.setBuildings(buildings.subList(0,13));
+
+        villageDto.setOwnerPlayerId( (village.getOwnerPlayer() == null) ? null : village.getOwnerPlayer().getId());
+/*
         villageDto.setBuildingsLevel(village.getBuildings()
                 .stream()
                 .map(Building::getLevel)
                 .collect(Collectors.toList()).subList(0,13));
-
+*/
         return villageDto;
     }
     

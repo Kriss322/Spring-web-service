@@ -5,6 +5,8 @@ import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.Village;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +33,7 @@ public class VillageHeadquarters extends Building{
     @CollectionTable(name = "BUILDINGS_UNDER_CONSTRUCT_TIME")
     @MapKeyColumn(name="NAME")
     @Column(name="TIME")
-    private Map<String, Integer> buildingsUnderConstructTime = new HashMap<>();
+    private Map<String, LocalDateTime> buildingsUnderConstructTime = new HashMap<>();
 
     public VillageHeadquarters(){
 

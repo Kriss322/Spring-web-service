@@ -28,30 +28,22 @@ public class Academy extends Building{
 
     @Override
     public void setStarterSettings() {
+
         this.level = 0;
 
         this.maxLevel = 1;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("VillageHeadquarters", 20);
-            requirements.put("Smithy", 20);
-            requirements.put("Market", 10);
-        }};
+        this.requirements.put("VillageHeadquarters", 20);
+        this.requirements.put("Smithy", 20);
+        this.requirements.put("Market", 10);
 
-        this.timeFactor = new HashMap<Integer, Double>(){{
-            timeFactor.put(1, 0.63);
-        }};
+        this.timeFactor.put(1, 0.63);
 
-        this.populationNeededForUpgrade = new HashMap<Integer, Integer>(){{
-            populationNeededForUpgrade.put(1, 80);
-        }};
+        this.populationNeededForUpgrade.put(1, 80);
 
-        this.totalOfPopulation = new HashMap<Integer, Integer>(){{
-            totalOfPopulation.put(1,80);
-        }};
 
-        this.resourceRequirementsForUpgrade = new HashMap<Integer, Resources>(){{
-            resourceRequirementsForUpgrade.put(1, new Resources(15000,25000,10000));
-        }};
+        this.totalOfPopulation.put(1,80);
+
+        this.resourceRequirementsForUpgrade.put(1, new Resources(15000,25000,10000));
     }
 }

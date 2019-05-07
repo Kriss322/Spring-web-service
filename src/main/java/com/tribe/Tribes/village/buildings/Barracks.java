@@ -42,9 +42,7 @@ public class Barracks extends Building{
 
         this.maxLevel = 25;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("VillageHeadquarters", 3);
-        }};
+        this.requirements.put("VillageHeadquarters", 3);
 
         Double timeFactor = 0.63;
         Integer populationNeededForUpgrade = 1;

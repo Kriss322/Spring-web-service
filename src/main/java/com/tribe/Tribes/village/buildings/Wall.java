@@ -32,9 +32,7 @@ public class Wall extends Building{
 
         this.maxLevel = 20;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("Barracks", 1);
-        }};
+        this.requirements.put("Barracks", 1);
 
         Double defFactor = 0.04;
         Integer populationNeededForUpgrade = 1;

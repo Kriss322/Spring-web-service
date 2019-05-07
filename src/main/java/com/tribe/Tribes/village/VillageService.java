@@ -74,6 +74,7 @@ public class VillageService {
         villageToCreate.getBuildings().stream().forEach(building -> buildingRepository.save(building));
         villageToCreate.getBuildings().stream().forEach(building -> building.setStarterSettings());
         villageToCreate.getBuildings().stream().forEach(building -> buildingRepository.save(building));
+        villageToCreate.setMaxPopulation(3);
 
         //Player playerToUpdate = playerRepository.findById(newPlayer.getId()).get();
         playerRepository.save(newPlayer);

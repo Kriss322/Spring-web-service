@@ -55,6 +55,11 @@ public class BuildingController {
                 .getId());
 
         buildingDto.setName(building.getName());
+
+        buildingDto.setResourcesForNextLevel(building.getResourceRequirementsForUpgrade().get(building.getLevel() + 1));
+
+        buildingDto.setPopulationNeededForNextLevel(building.getPopulationNeededForUpgrade().get(building.getLevel() + 1));
+
         return  buildingDto;
     }
 }

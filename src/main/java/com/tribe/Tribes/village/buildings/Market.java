@@ -28,10 +28,9 @@ public class Market extends Building{
 
         this.numberOfMerchants = 10;
 
-        this.requirements = new HashMap<String, Integer>(){{
-            requirements.put("VillageHeadquarters", 3);
-            requirements.put("Warehouse", 2);
-        }};
+        this.requirements.put("VillageHeadquarters", 3);
+        this.requirements.put("Warehouse", 2);
+
 
         Integer populationNeededForUpgrade = 1;
         Integer totalOfPopulation = 1;
