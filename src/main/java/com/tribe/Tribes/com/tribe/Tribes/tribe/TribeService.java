@@ -15,39 +15,38 @@ public class TribeService {
     private final PlayerRepository playerRepository;
 
     @Autowired
-    public TribeService(TribeRepository tribeRepository, PlayerRepository playerRepository){
+    public TribeService(TribeRepository tribeRepository, PlayerRepository playerRepository) {
         this.tribeRepository = tribeRepository;
         this.playerRepository = playerRepository;
     }
 
-    public List<Tribe> getAllTribes(){
+    public List<Tribe> getAllTribes() {
         return tribeRepository.findAll();
     }
 
-    public Tribe addNewTribe(Tribe tribe){
+    public Tribe addNewTribe(Tribe tribe) {
         return tribeRepository.save(tribe);
     }
 
-    public Tribe getTribeById(Integer id){
+    public Tribe getTribeById(Integer id) {
         return tribeRepository.getOne(id);
     }
 
-    public Tribe deleteTribe(Integer id){
+    public Tribe deleteTribe(Integer id) {
         Tribe tribeToDelete = tribeRepository.getOne(id);
         tribeRepository.delete(tribeToDelete);
-        return  tribeToDelete;
+        return tribeToDelete;
     }
 
-    public Tribe addPlayerToTribe(Integer tribeId, Integer playerId){
+    public Tribe addPlayerToTribe(Integer tribeId, Integer playerId) {
         Player player = playerRepository.getOne(playerId);
 
         Tribe tribe = tribeRepository.getOne(tribeId);
 
         player.setJoinedTribe(tribe);
-
         tribe.addPlayer(player);
-
         tribe.setPoints(tribe.getPoints() + player.getPlayerPoints());
+
         playerRepository.save(player);
         return tribeRepository.save(tribe);
     }

@@ -67,6 +67,12 @@ public class TribeController {
         return convertToDto(tribeCreated);
     }
 
+    @DeleteMapping("/{tribeId}")
+    public TribeDTO deleteTribe(@PathVariable Integer tribeId){
+        Tribe tribe = tribeService.deleteTribe(tribeId);
+        return convertToDto(tribe);
+    }
+
     public static Tribe convertToEntity(TribeDTO tribeDto){
 
         Tribe tribe = modelMapper.map(tribeDto, Tribe.class);

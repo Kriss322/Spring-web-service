@@ -42,4 +42,8 @@ public class Player implements Serializable {
     public void addPoints(int points){
         this.playerPoints += points;
     }
+
+    public void addVillage(Village village){
+        this.villages.add(village);
+    }
 }

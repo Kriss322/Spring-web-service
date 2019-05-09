@@ -4,9 +4,11 @@ import com.tribe.Tribes.village.units.SoldierUnit;
 import com.tribe.Tribes.player.Player;
 import com.tribe.Tribes.village.buildings.Building;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 
@@ -51,7 +53,7 @@ public class Village implements Serializable{
             name="UNITS",
             joinColumns=@JoinColumn(name="VILLAGE_ID")
     )
-    private List<SoldierUnit> unitsAtHome;
+    private List<SoldierUnit> unitsAtHome = new ArrayList<>();
 
     //TODO implement unit trainings
     @ElementCollection
@@ -76,4 +78,23 @@ public class Village implements Serializable{
         this.maxPopulation += population;
     }
 
+    public void addToArmy(SoldierUnit unit){
+        this.addToCurrentPopulation(unit.getPopulation() * unit.getNumberOfSoldiers());
+        this.unitsAtHome.add(unit);
+    }
+
+    public Building getBuildingById(Integer id){
+        return this.getBuildings()
+                .stream()
+                .filter(building -> building.getId().equals(id))
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
+    public void recruitUnits(String name, int value){
+        this.unitsAtHome
+                .stream()
+                .filter(soldierUnit -> soldierUnit.getName().equals(name))
+                .forEach(soldierUnit -> soldierUnit.addToNumberOfSoldiers(value));
+    }
 }

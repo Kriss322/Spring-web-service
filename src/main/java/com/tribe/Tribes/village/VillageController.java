@@ -1,8 +1,12 @@
 package com.tribe.Tribes.village;
 
+import com.tribe.Tribes.player.Player;
+import com.tribe.Tribes.player.PlayerDTO;
 import com.tribe.Tribes.village.buildings.Building;
 import com.tribe.Tribes.village.buildings.BuildingController;
 import com.tribe.Tribes.village.buildings.BuildingDTO;
+import com.tribe.Tribes.village.units.SoldierUnit;
+import com.tribe.Tribes.village.units.SoldierUnitDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +57,22 @@ public class VillageController {
         return convertToDto(villageEntity);
     }
 
+    @PutMapping("/{villageId}")
+    @ResponseBody
+    public VillageDTO addVillageToPlayer(@PathVariable Integer villageId, Integer playerId){
+        Village village = villageService.addVillageToPlayer(villageId, playerId);
+        return convertToDto(village);
+    }
+
+    @PutMapping
+    @ResponseBody
+    public VillageDTO updateVillage(@RequestBody VillageDTO villageDTO){
+
+        Village villageEntity = convertToEntity(villageDTO);
+
+        return convertToDto(villageService.updateVillage(villageEntity));
+    }
+
     @GetMapping("/{villageId}/buildings")
     @ResponseBody
     public List<BuildingDTO> getBuildingsOfVillage(@PathVariable("villageId") Integer villageId){
@@ -65,6 +85,24 @@ public class VillageController {
                 .stream().distinct()
                 .map(BuildingController::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{villageId}/buildings/{buildingId")
+    @ResponseBody
+    public BuildingDTO getOneBuildingOfVillage(@PathVariable Integer villageId, @PathVariable Integer buildingId){
+        Village villageEntity = villageService.getVillageById(villageId);
+
+        Building building = villageEntity.getBuildingById(buildingId);
+
+        return BuildingController.convertToDto(building);
+    }
+
+    @PatchMapping("/{villageId}")
+    public VillageDTO partialUpdateNumberOfSoldiers(@PathVariable Integer villageId, @RequestBody SoldierUnitDTO partialUpdate){
+
+        Village updatedVillage = villageService.partialUpdateNumberOfSoldiers(villageId, partialUpdate);
+
+        return convertToDto(updatedVillage);
     }
 
     public static Village convertToEntity(VillageDTO villageDto) {

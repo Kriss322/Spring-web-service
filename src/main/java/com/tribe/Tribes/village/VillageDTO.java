@@ -22,6 +22,10 @@ public class VillageDTO {
     private int villagePoints;
     
     private Integer ownerPlayerId;
+
+    private int currentPopulation;
+
+    private int maxPopulation;
 //    
     private WorldPosition position;
 //    
@@ -29,7 +33,7 @@ public class VillageDTO {
 //    
     private ResourceProduction resourceProducementPerHour;
 //    
-    // private List<SoldierUnit> army;
+     private List<SoldierUnit> unitsAtHome;
 //    
     private List<BuildingDTO> buildings;
 

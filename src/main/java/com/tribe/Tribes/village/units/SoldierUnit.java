@@ -4,6 +4,7 @@ package com.tribe.Tribes.village.units;
 import com.tribe.Tribes.village.Resources;
 import com.tribe.Tribes.village.Village;
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,21 +16,30 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class SoldierUnit implements Serializable {
 
-    private Resources resourceTrainingCost;
+    protected String name;
 
-    private Village ownerVillage;
+    protected Resources resourceTrainingCost;
 
-    private int numberOfSoldiers;
+    protected Village ownerVillage;
 
-    private int population;
+    protected int numberOfSoldiers;
 
-    private int archerDefenseStrength;
+    protected int population;
 
-    private int generalDefenseStrength;
+    protected int archerDefenseStrength;
 
-    private int offensiveStrength;
+    protected int generalDefenseStrength;
 
-    private int speed;
+    protected int offensiveStrength;
 
-    private int haulCapacity;
+    //minutes per field
+    protected int speed;
+
+    protected int haulCapacity;
+
+    //protected Map<String, Integer> requirements;
+
+    public void addToNumberOfSoldiers(int value){
+        this.numberOfSoldiers += value;
+    }
 }
