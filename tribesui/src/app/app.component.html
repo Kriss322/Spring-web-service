@@ -4,37 +4,39 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/overview">
           <mat-icon>list</mat-icon>
-          <span>Áttekintés</span>
+          <span>Overview</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/map">
           <mat-icon>public</mat-icon>
-          <span routerLink="/">Térkép</span>
+          <span routerLink="/">Map</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/village">
           <mat-icon>home</mat-icon>
-          <span>Falu</span>
+          <span>Village</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/tribe">
           <mat-icon>group</mat-icon>
-          <span>Klán</span>
+          <span>Tribe</span>
         </button>
-        <button mat-menu-item>
-          <mat-icon>person</mat-icon>
-          <span>Profil</span>
+        <button mat-menu-item routerLink="/profile">
+          <mat-icon>person</mat-icon> 
+          <span>Profile</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/messages">
           <mat-icon>sms</mat-icon>
-          <span>Üzenetek</span>
+          <span>Messages</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/ranks">
           <mat-icon>stars</mat-icon>
-          <span>Ranglista</span>
+          <span>Ranking</span>
         </button>
       </mat-menu>
     </span>
     <span class="fill-remaining-space">Tribes</span>
+
+    <a style="color:white" class="mat-h2" routerLink="/register-player" >Register</a>
   </mat-toolbar>
 
   <router-outlet></router-outlet>

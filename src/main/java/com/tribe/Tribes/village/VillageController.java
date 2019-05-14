@@ -1,11 +1,9 @@
 package com.tribe.Tribes.village;
 
-import com.tribe.Tribes.player.Player;
-import com.tribe.Tribes.player.PlayerDTO;
+
 import com.tribe.Tribes.village.buildings.Building;
 import com.tribe.Tribes.village.buildings.BuildingController;
 import com.tribe.Tribes.village.buildings.BuildingDTO;
-import com.tribe.Tribes.village.units.SoldierUnit;
 import com.tribe.Tribes.village.units.SoldierUnitDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/villages")
 public class VillageController {
@@ -35,6 +34,11 @@ public class VillageController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{playerId}/number-of-villages")
+    public int getNumberOfVillagesForPlayer(@PathVariable Integer playerId){
+        return villageService.getNumberOfVillagesForPlayer(playerId);
+    }
+
     @GetMapping("/{id}")
     @ResponseBody
     public VillageDTO getVillage(@PathVariable("id") Integer id){
@@ -50,7 +54,7 @@ public class VillageController {
                 .collect(Collectors.toList()).get(0);*/
     }
 
-    @DeleteMapping("/{villageId}")
+    @DeleteMapping("admin/{villageId}")
     public VillageDTO deleteVillage(@PathVariable("villageId") Integer villageId){
 
         Village villageEntity = villageService.deleteVillage(villageId);
@@ -133,7 +137,7 @@ public class VillageController {
 
         villageDto.setBuildings(buildings.subList(0,13));
 
-        villageDto.setOwnerPlayerId( (village.getOwnerPlayer() == null) ? null : village.getOwnerPlayer().getId());
+        //villageDto.setOwnerPlayerId( (village.getOwnerPlayer() == null) ? null : village.getOwnerPlayer().getId());
 /*
         villageDto.setBuildingsLevel(village.getBuildings()
                 .stream()

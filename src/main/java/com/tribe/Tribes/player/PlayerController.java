@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
 
 
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/players")
 public class PlayerController {
@@ -54,6 +54,7 @@ public class PlayerController {
     }
 
     @GetMapping
+    @ResponseBody
     public List<PlayerDTO> getAllPlayers(){
         List<Player> players = playerService.getAllPlayers();
         return players.stream()
@@ -68,7 +69,7 @@ public class PlayerController {
         return convertToDto(playerCreated);
     }
 
-    @DeleteMapping("/{playerId}")
+    @DeleteMapping("admin/{playerId}")
     public PlayerDTO deletePlayer(@PathVariable Integer playerId){
 
         Player playerEntity = playerService.deletePlayer(playerId);

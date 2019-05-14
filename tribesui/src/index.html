@@ -11,47 +11,6 @@
 </head>
 <body>
   <app-root></app-root>
-  <div><script>
-      var config = {
-          type: Phaser.auto,
-          width: 660,
-          height: 465,
-          scene: {
-              preload: preload,
-              create: create
-          }
-      };
-  
-      var game = new Phaser.Game(config);
-  
-      function preload ()
-      {
-          this.load.image('homebase', 'assets/back_none.jpg');
-          this.load.image('buildings', 'assets/visual-building.png');
-      }
-  
-      function create ()
-      {
-          this.add.image(330, 232, 'homebase');
-          
-          var BuildingsImage = this.add.image(770, 475, 'buildings');
-  
-          BuildingsImage.frame.height = 120;
-  
-          BuildingsImage.frame.width = 140;
-  
-          BuildingsImage.frame.cutHeight = 120;
-  
-          BuildingsImage.frame.cutWidth = 140;
-  
-          BuildingsImage.frame.updateUVs();   
-  
-      }
-  
-      function upadet (){
-          
-      }
-      </script></div>
   
 </body>
 </html>

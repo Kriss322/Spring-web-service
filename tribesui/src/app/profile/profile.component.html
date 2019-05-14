@@ -1,0 +1,42 @@
+<div class="position">
+    <h2 class="mat-h2">{{player.name}}'s profile</h2>
+    <table class="table table-trapped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Points</th>
+            <th>Tribe</th>
+            <th>Villages</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+              <td>{{player.name}}</td>
+              <td>{{player.playerPoints}}</td>
+              <td>{{player.joinedTribe}}</td>
+              <td>{{player.villages.length}}</td>
+            </tr>
+          </tbody>
+      </table>
+
+      <br><br>
+      <table class="table table-trapped">
+          <thead>
+            <tr>
+              <th>Village</th>
+              <th>Coordinates</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+              <tr *ngFor="let village of villageOfPlayer">
+                <td><a [routerLink] = "['/village', village.id]">{{village.name}}</a></td>
+                <td>{{village.villagePoints}}</td>
+                <td>({{village.position.xposition}}|{{village.position.yposition}})</td>
+              </tr>
+            </tbody>
+        </table>
+
+      </div>

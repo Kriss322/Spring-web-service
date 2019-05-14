@@ -20,8 +20,8 @@ public class VillageDTO {
     private String name;
     
     private int villagePoints;
-    
-    private Integer ownerPlayerId;
+
+    private Integer ownerPlayer;
 
     private int currentPopulation;
 

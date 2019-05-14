@@ -36,6 +36,12 @@ public class Resources implements Serializable, Comparable<Resources> {
         this.iron -= r.getIron();
     }
 
+    public void add(Resources r){
+        this.clay += r.getClay();
+        this.wood += r.getWood();
+        this.iron += r.getIron();
+    }
+
     public void multiply(int value){
         this.clay *= value;
         this.wood *= value;

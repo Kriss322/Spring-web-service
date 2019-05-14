@@ -1,0 +1,29 @@
+<div class="position">
+    <h2 class="mat-h2">Players</h2>
+    <table class="table table-trapped">
+        <thead>
+          <tr>
+            <th>Players ({{players.length}})</th>
+            <th>Points</th>
+            <th>Tribe</th>
+            <th>Villages</th>
+            <th>Average Points Per Village</th>
+            <th>Go to profile</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let player of players">
+              <td>{{player.name}}</td>
+              <td>{{player.playerPoints}}</td>
+              <td>{{player.joinedTribe}}</td>
+              <td>{{player.villages.length}}</td>
+              <td>{{player.playerPoints / player.villages.length}}</td>
+              <button mat-button [routerLink] = "['/profile', player.id]">
+                <mat-icon>arrow_right_alt</mat-icon>
+              </button>
+            </tr>
+          </tbody>
+
+      </table>
+  </div>

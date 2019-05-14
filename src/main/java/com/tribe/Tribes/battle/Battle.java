@@ -21,15 +21,19 @@ public class Battle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "ATTAcKER_VILLAGE_ID")
     private Village attackerVillage;
 
+    @ManyToOne
+    @JoinColumn(name = "DEFENDER_VILLAGE_ID")
     private Village defenderVillage;
 
     @ElementCollection
     @CollectionTable(
             name="BATTLE_ATTACKER_ARMY",
             joinColumns=@JoinColumn(name="BATTLE_ID")
-    )
+            )
     private List<SoldierUnit> attackerArmy;
 
     @ElementCollection
@@ -45,7 +49,7 @@ public class Battle {
 
     private LocalDateTime date;
 
-    private Player winnerPlayer;
+    //private Player winnerPlayer;
 
     @ElementCollection
     @CollectionTable(
@@ -53,5 +57,24 @@ public class Battle {
             joinColumns=@JoinColumn(name="BATTLE_ID")
     )
     List<SoldierUnit> survivedUnits;
+
+    public Village simulateBattle(){
+
+        int overallDefenseStrength = 0;
+        for ( SoldierUnit unit : this.defenderArmy) {
+            overallDefenseStrength += unit.getGeneralDefenseStrength() * unit.getNumberOfSoldiers();
+        }
+
+        int overallOffensiveStrength = 0;
+        for (SoldierUnit unit : this.attackerArmy
+             ) {
+            overallOffensiveStrength += unit.getOffensiveStrength() * unit.getNumberOfSoldiers();
+        }
+
+        if(overallDefenseStrength >= overallOffensiveStrength){
+            return defenderVillage;
+        }
+        else return attackerVillage;
+    }
 
 }

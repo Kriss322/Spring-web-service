@@ -1,0 +1,28 @@
+<mat-card>
+    <form #playerForm="ngForm" (ngSubmit)="save(playerForm.value)" class="example-form">
+      <mat-card-header>
+        <mat-card-title><h2>Register Player</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <mat-form-field  class="example-full-width">
+          <input matInput placeholder="username" [(ngModel)]="player.name"
+          required name="name" #name>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="e-mail">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="password">
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!playerForm.form.valid">Save</button>
+        <a mat-button routerLink="/ranks">Cancel</a>
+      </mat-card-actions>
+    </form>
+  </mat-card>

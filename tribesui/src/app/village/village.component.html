@@ -1,0 +1,53 @@
+<div  class="position">
+  <div>
+    <p style="float: left; padding-right: 20px;"><img src="../assets/back_none.jpg"  alt="Homebase"></p>
+
+    <table class="table table-trapped">
+        <thead>
+          <tr>
+            <th>{{village.name}}</th>
+            <th>({{village.position.xposition}}|{{village.position.yposition}})</th>
+            <th>({{village.villagePoints}} pont)</th>
+            <th> <mat-icon>local_florist</mat-icon>{{village.resourcesInWareHouse.wood}}</th>
+            <th> <mat-icon>whatshot</mat-icon>{{village.resourcesInWareHouse.clay}}</th>
+            <th> <mat-icon>build</mat-icon> {{village.resourcesInWareHouse.iron}}</th>
+            <th> <mat-icon>account_balance</mat-icon> {{warehouse.capacity}}</th>
+            <th> <mat-icon>person</mat-icon> {{village.currentPopulation}} / {{village.maxPopulation}}</th>
+          </tr>
+        </thead>
+      </table>
+      <br><br>
+    <div class="container">
+      <table class="table table-trapped">
+        <thead>
+          <tr>
+            <th>Buildings</th>
+            <th>Level</th>
+            <th>Wood</th>
+            <th>Clay</th>
+            <th>Iron</th>
+            <th>Population</th>
+            <th>Build</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let data of villageBuildings">
+            <td>{{data.name}}</td>
+            <td>{{data.level}}</td>
+            <td>{{data.resourcesForNextLevel.wood}}</td>
+            <td>{{data.resourcesForNextLevel.clay}}</td>
+            <td>{{data.resourcesForNextLevel.iron}}</td>
+            <td>{{data.populationNeededForNextLevel}}</td>
+            <button mat-raised-button color="primary" (click)="levelUpBuilding(data.id)">{{data.level + 1}}. level</button>
+          </tr>
+        </tbody>
+
+
+      </table>
+    </div>
+
+  </div>
+  
+  
+</div>

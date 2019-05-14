@@ -55,7 +55,7 @@ public class VillageService {
 
         Village villageToCreate = new Village();
 
-        villageToCreate.setName("Village_1");
+        villageToCreate.setName(newPlayer.getName() + " faluja ");
         villageToCreate.setOwnerPlayer(newPlayer);
         villageToCreate.setResourceProducementPerHour(resourceProduction);
         villageToCreate.setPosition(position);
@@ -75,6 +75,7 @@ public class VillageService {
         villageList.add(villageToCreate);
 
         newPlayer.setVillages(villageList);
+        newPlayer.setPlayerPoints(60);
         playerRepository.save(newPlayer);
         villageRepository.save(villageToCreate);
 
@@ -279,6 +280,13 @@ public class VillageService {
         playerRepository.save(playerEntity);
 
         return villageEntity;
+
+    }
+
+    public int getNumberOfVillagesForPlayer(int playerId) {
+        List<Village> villages = this.getVillageByPlayerId(playerId);
+
+        return villages.size();
 
     }
 }

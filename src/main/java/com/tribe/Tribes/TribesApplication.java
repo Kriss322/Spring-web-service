@@ -35,9 +35,9 @@ public class TribesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args){
 
-		Player testPlayer1 = new Player(1, "test_player1", 60, null, "", null, null);
-		Player testPlayer2 = new Player(2, "test_player2", 60, null, "", null, null);
-		Player testPlayer3 = new Player(3, "test_player3", 60, null, "", null, null);
+		Player testPlayer1 = new Player(1, "test-player-1 ", 60, null, "", null, null);
+		Player testPlayer2 = new Player(2, "test-player-2", 60, null, "", null, null);
+		Player testPlayer3 = new Player(3, "test-player-3 ", 60, null, "", null, null);
 		playerService.addNewPlayer(testPlayer1);
 		playerService.addNewPlayer(testPlayer2);
 		playerService.addNewPlayer(testPlayer3);
@@ -53,7 +53,7 @@ public class TribesApplication implements CommandLineRunner {
 				villageService.updateResources(villageRepository.findAll());
 				try {
 					/*PerHour
-					Thread.sleep(360000);*/
+					Thread.sleep(3600000);*/
 
 					//For testing
 					Thread.sleep(10000);

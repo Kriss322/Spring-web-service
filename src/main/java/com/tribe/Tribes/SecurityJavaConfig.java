@@ -46,12 +46,14 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
-                //.antMatchers("/**").hasRole("ADMIN")
-                //.antMatchers("/admin/**").hasRole("ADMIN")
-                //.antMatchers(HttpMethod.DELETE, "/players/**").hasRole("ADMIN")
+                .antMatchers("/console/**").hasRole("ADMIN")
+                .antMatchers("/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .csrf().disable()
                 .formLogin().disable();
+
+        http.headers().frameOptions().disable();
        
        //http.authorizeRequests().antMatchers("/").permitAll();
     }

@@ -1,0 +1,25 @@
+<div class="position">
+  <h2 class="mat-h2">Falvak</h2>
+  <mat-expansion-panel class="villages-width">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Falvak ({{villages.length}}) </mat-panel-title>
+      <mat-panel-description>Pontok</mat-panel-description>
+      <span style="padding-right: 20px;">Koordináták </span>
+
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+  <mat-expansion-panel *ngFor="let village of villages" class="villages-width" >
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{village.name}}</mat-panel-title>
+      <mat-panel-description>{{village.villagePoints}}</mat-panel-description>
+      <p style="padding-right: 20px;">
+          {{village.position.xposition}} | {{village.position.yposition}}
+      </p>
+    </mat-expansion-panel-header>
+    <mat-action-row>
+      <button mat-button [routerLink] = "['/village', village.id]">
+        <mat-icon>arrow_right_alt</mat-icon>
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</div>
