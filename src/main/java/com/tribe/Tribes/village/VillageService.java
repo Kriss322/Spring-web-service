@@ -241,6 +241,7 @@ public class VillageService {
 
         }
 
+        //villageUpdate.recruitUnits(partialUpdate.getName(), partialUpdate.getNumberOfSoldiers());
         villageRepository.save(villageUpdate);
         return villageUpdate;
     }

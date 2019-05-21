@@ -39,7 +39,8 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     }
     
     @Override
-    protected void configure(HttpSecurity http) throws Exception { 
+    protected void configure(HttpSecurity http) throws Exception {
+        /*
         http
                 //HTTP Basic authentication
                 .httpBasic()
@@ -53,9 +54,10 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .formLogin().disable();
 
-        http.headers().frameOptions().disable();
+        http.headers().frameOptions().disable();*/
        
-       //http.authorizeRequests().antMatchers("/").permitAll();
+       http.authorizeRequests().antMatchers("/").permitAll();
+       http.csrf().disable();
     }
     
     

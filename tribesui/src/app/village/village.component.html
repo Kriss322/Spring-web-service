@@ -13,6 +13,8 @@
             <th> <mat-icon>build</mat-icon> {{village.resourcesInWareHouse.iron}}</th>
             <th> <mat-icon>account_balance</mat-icon> {{warehouse.capacity}}</th>
             <th> <mat-icon>person</mat-icon> {{village.currentPopulation}} / {{village.maxPopulation}}</th>
+            <button mat-raised-button color="primary" [routerLink] = "['/units', village.id]">Unit training</button>
+            <button mat-raised-button color="primary" [routerLink] = "['/attack', village.id]">Attack Village</button>
           </tr>
         </thead>
       </table>

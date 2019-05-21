@@ -1,0 +1,69 @@
+
+<h2 class="mat-h2">Units</h2>
+
+<table class="table table-trapped">
+  <thead>
+    <tr>
+      <th>{{village.name}}</th>
+      <th>({{village.position.xposition}}|{{village.position.yposition}})</th>
+      <th>({{village.villagePoints}} pont)</th>
+      <th> <mat-icon>local_florist</mat-icon>{{village.resourcesInWareHouse.wood}}</th>
+      <th> <mat-icon>whatshot</mat-icon>{{village.resourcesInWareHouse.clay}}</th>
+      <th> <mat-icon>build</mat-icon> {{village.resourcesInWareHouse.iron}}</th>
+      <th> <mat-icon>person</mat-icon> {{village.currentPopulation}} / {{village.maxPopulation}}</th>
+    </tr>
+  </thead>
+</table>
+<br><br>
+
+<div class="container">
+  <table class="table table-trapped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Wood</th>
+        <th>Clay</th>
+        <th>Iron</th>
+        <th>Population</th>
+        <th>Number of soldiers</th>
+        <th>Defense strength</th>
+        <th>Offensive strength</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let data of village.unitsAtHome">
+        <td>{{data.name}}</td>
+        <td>{{data.resourceTrainingCost.wood}}</td>
+        <td>{{data.resourceTrainingCost.clay}}</td>
+        <td>{{data.resourceTrainingCost.iron}}</td>
+        <td>{{data.population}}</td>
+        <td>{{data.numberOfSoldiers}}</td>
+        <td>{{data.generalDefenseStrength}}</td>
+        <td>{{data.offensiveStrength}}</td>
+        <td>
+          <form (ngSubmit)="onSubmit($event)">
+            <input name="amount">
+          </form>
+        </td>
+        <!-- <button mat-raised-button color="primary" (click)="trainUnits(village.id, data.name, trainAmount)">Train</button> -->
+      </tr>
+    </tbody>
+
+
+  </table>
+
+  <h2 class="mat-h2">Enemy Village To Attack</h2>
+
+  <mat-form-field  class="example-full-width">
+      <input matInput placeholder="position X:">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="position Y:">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Attack</button>
+
+</div>

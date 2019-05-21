@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class VillageService {
 
+  unit: UnitSet = {name: "", numberOfSoldiers: 0};
+
   private villageServiceURL = 'http://localhost:8080/' + 'villages';
 
   constructor(private http: HttpClient) { }
@@ -36,5 +38,12 @@ export class VillageService {
 
   remove(href: string){
     return this.http.delete(href);
+  }
+
+  trainUnits(id: string, name: string, amount: number){
+    this.unit.numberOfSoldiers = amount;
+    this.unit.name = name;
+    console.log(id + " "+ this.unit.numberOfSoldiers);
+    return this.http.patch(this.villageServiceURL + '/' + id, this.unit);
   }
 }

@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { RegisterPlayerComponent } from './register-player/register-player.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { UnitsComponent } from './units/units.component';
+import { AttackComponent } from './attack/attack.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import {MatInputModule} from '@angular/material/input';
     ProfileComponent,
     MessagesComponent,
     RanksComponent,
-    RegisterPlayerComponent
+    RegisterPlayerComponent,
+    UnitsComponent,
+    AttackComponent
   ],
   imports: [
     HttpClientModule,

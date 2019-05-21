@@ -8,6 +8,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RanksComponent } from './ranks/ranks.component';
 import {RegisterPlayerComponent } from './register-player/register-player.component'
+import { UnitsComponent } from './units/units.component';
+import { AttackComponent } from './attack/attack.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/overview', pathMatch: 'full'},
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'ranks', component: RanksComponent },
-  { path: 'register-player', component: RegisterPlayerComponent}
+  { path: 'register-player', component: RegisterPlayerComponent},
+  { path: 'units/:id', component: UnitsComponent},
+  { path: 'attack/:id', component: AttackComponent}
 ];
 
 @NgModule({

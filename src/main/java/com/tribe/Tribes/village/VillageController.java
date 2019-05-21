@@ -54,7 +54,7 @@ public class VillageController {
                 .collect(Collectors.toList()).get(0);*/
     }
 
-    @DeleteMapping("admin/{villageId}")
+    @DeleteMapping("{villageId}")
     public VillageDTO deleteVillage(@PathVariable("villageId") Integer villageId){
 
         Village villageEntity = villageService.deleteVillage(villageId);
